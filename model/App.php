@@ -4,6 +4,7 @@ class App
 {
     public static function start()
     {
-        echo 'Start';
+        $ruta = Request::getRuta();
+        echo $ruta;
     }
 }
