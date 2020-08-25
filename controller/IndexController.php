@@ -3,6 +3,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        echo 'hello';
+       $this->view->render('pocetna');
     }
 }
