@@ -14,19 +14,19 @@ class App
         }else{
             $klasa=ucfirst($djelovi[1]);
         }
-        $klasa .='Controller';
+        $klasa .= 'Controller';
         //echo $klasa;
 
         $funkcija='';
         if(!isset($djelovi[2]) || $djelovi[2]===''){
             $funkcija='index';
         }else{
-            $funkcija=($djelovi[2]);
+            $funkcija=$djelovi[2];
         }
 
         //echo $klasa.'-&gt'.$funkcija;
 
-        if (class_exists($klasa)&&method_exists($klasa,$funkcija)){
+        if (class_exists($klasa) && method_exists($klasa,$funkcija)){
             $instanca = new $klasa();
             $instanca->$funkcija();
         }else{

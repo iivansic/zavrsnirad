@@ -15,9 +15,10 @@ spl_autoload_register(function($klasa)
 {
     $putanje= explode(PATH_SEPARATOR,get_include_path());
     foreach($putanje as $p){
-        if(file_exists($p.DIRECTORY_SEPARATOR.$klasa.'.php'))
-            include $p.DIRECTORY_SEPARATOR.$klasa.'.php';
+        if(file_exists($p. DIRECTORY_SEPARATOR . $klasa . '.php')){
+            include $p. DIRECTORY_SEPARATOR . $klasa . '.php';
             break;
+        }
     }
 });
 
