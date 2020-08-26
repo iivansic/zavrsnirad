@@ -6,7 +6,7 @@ class App
     {
         $ruta = Request::getRuta();
         //echo $ruta;
-        $dijelovi=explode('/',$ruta);
+        $djelovi=explode('/',$ruta);
 
         $klasa='';
         if(!isset($djelovi[1]) || $djelovi[1]===''){
