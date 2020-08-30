@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <?php include_once 'predlozak/head.phtml'; ?>
+  </head>
 <body>
-    <?=$sadrzaj ?>
+<div class='grid-container'>
+    <?php include_once 'predlozak/izbornik.phtml';?>
+    <?php echo $sadrzaj;?>
+</div>
+<?php include_once 'predlozak/podnozje.phtml';?>
+<?php include_once 'predlozak/skripte.phtml';?>
+
 </body>
 </html>
