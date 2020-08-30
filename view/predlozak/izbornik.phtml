@@ -3,13 +3,21 @@
     <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
       <button class="menu-icon" type="button" data-toggle></button>
     </span>
-    <a class="topbar-responsive-logo" href="#"><strong><?=APP::config('nazivAPP') ?></strong></a>
+    <a class="topbar-responsive-logo" href="<?=APP::config('url') ?>"><strong><?=APP::config('nazivAPP') ?></strong></a>
   </div>
   <div id="topbar-responsive" class="topbar-responsive-links">
     <div class="top-bar-right">
-      <ul class="menu simple vertical medium-horizontal">   
-        <li><button type="button" class="button hollow topbar-responsive-button">Onama</button></li>
-        <li><button type="button" class="button hollow topbar-responsive-button">Login</button></li>
+      <ul class="menu simple vertical medium-horizontal">
+        <?php if(isset($_SESSION['autoriziran'])):?>
+          <!-- ovdje dođe privatni dio izbornika -->
+        <?php endif; ?>
+
+        <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button">O nama</button></a></li>
+        <?php if(!isset($_SESSION['autoriziran'])):?>
+          <li><button type="button" class="button hollow topbar-responsive-button">Login</button></li>
+        <?php else: ?>
+          <li><button type="button" class="button hollow topbar-responsive-button">Logout</button></li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>

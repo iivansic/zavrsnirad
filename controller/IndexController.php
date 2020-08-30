@@ -5,4 +5,8 @@ class IndexController extends Controller
     {
        $this->view->render('pocetna');
     }
+    public function onama()
+    {
+        $this->view->render('onama');
+    }
 }
