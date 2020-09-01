@@ -9,7 +9,15 @@
                 echo 'style="background-color:silver;"';
             }
              ?>>
-                &copy; <?=APP::config('nazivAPP') ?> <?php echo date("Y"); ?>
+
+            &copy; <?=APP::config('nazivAPP') ?> <?php echo date("Y"); ?>
+            <?php 
+            if(App::config('ip')){
+                echo '(Rad lokalno)';
+            }else{
+                echo '(Rad u produkciji)';
+            }
+            ?>
             </div> 
         </div> 
     </div>
