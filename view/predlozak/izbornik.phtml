@@ -14,7 +14,7 @@
 
         <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button">O nama</button></a></li>
         <?php if(!isset($_SESSION['autoriziran'])):?>
-          <li><button type="button" class="button hollow topbar-responsive-button">Login</button></li>
+          <li><a href="<?=APP::config('url') ?>index/login"><button type="button" class="button hollow topbar-responsive-button">Login</button></a></li>
         <?php else: ?>
           <li><button type="button" class="button hollow topbar-responsive-button">Logout</button></li>
         <?php endif; ?>
