@@ -24,13 +24,19 @@ create table glavnatablica(
 ) engine=innodb;
 create table radnik(
 	id int not null primary key auto_increment,
-	ime varchar(50),
-	prezime varchar(50),
-    radnomjesto varchar(50),
-    slika varchar(200),
+	ime varchar(50) not null,
+	prezime varchar(50) not null,
+	email varchar(50) not null,
+    radnomjesto varchar(50) not null,
+    lozinka char(60) not null,
     komentar text,
     datum timestamp
 ) engine=innodb;
+insert into radnik (ime,prezime,email,radnomjesto,lozinka) values
+('ivan','ivansic','ivan.ivansic@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('zvonko','bukna','zvonko.bukna@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('oper','edunova','oper@edunova.hr','oper','$2y$10$ORTWwUHhw8REC1R.K54MqOg4Qa.8RcCMZOsdPN3FXjZBkCADLmKbO'),
+('admin','edunova','admin@edunova.hr','admin','$2y$10$XFN6EAhRcT8dLluR55We5e7tVIRdmpdT6UK3dKC5K5rBu61lZx8wS');
 create table povijestkretanjanaloga(
 	id int not null primary key auto_increment,
 	glavnatablica int not null,

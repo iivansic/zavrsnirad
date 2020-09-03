@@ -43,4 +43,8 @@ class IndexController extends Controller
        
     }
 
+    public function test(){
+        echo password_hash("a",PASSWORD_BCRYPT);
+    }
+
 }
