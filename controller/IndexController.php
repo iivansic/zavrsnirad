@@ -54,6 +54,21 @@ class IndexController extends Controller
             ]);
             return;
         }
+
+        if(!password_verify($_POST['lozinka'], $rezultat->lozinka)){
+            $this->view->render('login',[
+                'email' => trim($_POST['email']),
+                'poruka' => 'Za uneseni email nije ispravna lozinka'
+            ]);
+        }
+
+        // ovdje sam autoriziran
+
+
+    }
+
+    private function loginView($email,$poruka){
+
     }
 
     public function test(){

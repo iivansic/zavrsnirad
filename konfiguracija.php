@@ -4,8 +4,8 @@ if($dev){
     $baza=[
         'server' => 'localhost',
         'baza' => 'bazaa',
-        'korisnik' => 'root',
-        'lozinka' => ''
+        'korisnik' => 'edunova',
+        'lozinka' => 'edunova'
     ];
 }else{
     $baza=[
