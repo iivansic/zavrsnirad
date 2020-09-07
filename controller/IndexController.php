@@ -55,6 +55,7 @@ class IndexController extends Controller
 
         if(!password_verify($_POST['lozinka'], $rezultat->lozinka)){
             $this->loginView(trim($_POST['email']), 'Za uneseni email nije ispravna lozinka');
+            return;
         }
 
         // ovdje sam autoriziran
