@@ -30,7 +30,9 @@ class App
             $instanca = new $klasa();
             $instanca->$funkcija();
         }else{
-            echo 'Kreirati funkciju unutar klase ' . $klasa . '-&gt;' . $funkcija;
+            $ic= new IndexController();
+            $ic->notfound('Kreirati funkciju unutar klase ' . $klasa . '-&gt;' . $funkcija);
+            //echo 'Kreirati funkciju unutar klase ' . $klasa . '-&gt;' . $funkcija;
         }
     }
 

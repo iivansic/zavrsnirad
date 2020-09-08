@@ -12,6 +12,14 @@ class IndexController extends Controller
     {
         $this->view->render('onama');
     }
+
+    public function notfound($poruka)
+    {
+        $this->view->render('notfound', ['poruka'=>$poruka]);
+    }
+
+
+
     public function login()
     {
             $this->loginView('', 'Popunite traženje podatke');
