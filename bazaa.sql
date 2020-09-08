@@ -7,7 +7,7 @@
 drop database if exists bazaa;
 create database bazaa;
 use bazaa;
-#alter database maksimus_pp21 default character set utf8;
+alter database maksimus_pp21 default character set utf8;
 create table glavnatablica(
 	id int not null primary key auto_increment,
 	mbstatus varchar(50),

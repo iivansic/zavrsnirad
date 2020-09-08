@@ -28,6 +28,12 @@ class IndexController extends Controller
 
     public function autorizacija()
     {
+        $np = new NadzornaplocaController();
+        if(isset($_SESSION['autoriziran'])){
+            $np -> index();
+            return;
+        }
+
         if(!isset($_POST['email']) || !isset($_POST['lozinka'])){
             $this->login();
             return;
@@ -55,6 +61,7 @@ class IndexController extends Controller
 
         if(!password_verify($_POST['lozinka'], $rezultat->lozinka)){
             $this->loginView(trim($_POST['email']), 'Za uneseni email nije ispravna lozinka');
+            return;
         }
 
         // ovdje sam autoriziran
