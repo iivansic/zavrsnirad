@@ -5,12 +5,57 @@
     </span>
     <a class="topbar-responsive-logo" href="<?=APP::config('url') ?>"><strong><?=APP::config('nazivAPP') ?></strong></a>
   </div>
-  <div id="topbar-responsive" class="topbar-responsive-links">
-    <div class="top-bar-right">
-      <ul class="menu simple vertical medium-horizontal">
-        <?php if(isset($_SESSION['autoriziran'])):?>
-          <!-- ovdje dođe privatni dio izbornika -->
+
+
+        <?php
+         // privatni dio
+        if(isset($_SESSION['autoriziran'])):?>
+
+<div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li>
+        <a href="#"><button type="button" class="button hollow topbar-responsive-button">Izbornik</button></a>
+        <ul class="menu vertical">
+
+        <li>
+        <a href="#"><button type="button" class="button hollow topbar-responsive-button">Baza</button></a>
+        <ul class="menu vertical">
+          <li><br><a href="<?=APP::config('url') ?>nadzornaploca/index"><button type="button" class="button hollow topbar-responsive-button">Nadzorna ploča</button></a></li>
+          <li><a href="<?=APP::config('url') ?>glavnatablica/index"><button type="button" class="button hollow topbar-responsive-button">Glavna tablica</button></a></li>
+          <li><a href="<?=APP::config('url') ?>radnik/index"><button type="button" class="button hollow topbar-responsive-button">Radnici</button></a></li>
+          </ul>
+         
+          <li>
+          <a href="#"><button type="button" class="button hollow topbar-responsive-button">Početne tehnologije</button></a>
+          <ul class="menu vertical">
+          <li><a href="<?=APP::config('url') ?>programer/index"><button type="button" class="button hollow topbar-responsive-button">Programeri</button></a></li>
+          <li><a href="<?=APP::config('url') ?>laser/index"><button type="button" class="button hollow topbar-responsive-button">Laser</button></a></li>
+          <li><a href="<?=APP::config('url') ?>deformacija/index"><button type="button" class="button hollow topbar-responsive-button">Deformacija</button></a></li>
+          <li><a href="<?=APP::config('url') ?>strojnaobrada/index"><button type="button" class="button hollow topbar-responsive-button">Strojna Obrada</button></a></li>
+          </ul>
+   
+
+          <li>
+          <a href="#"><button type="button" class="button hollow topbar-responsive-button">Završne tehnologije</button></a>
+          <ul class="menu vertical">
+          <li><a href="<?=APP::config('url') ?>dispecer/index"><button type="button" class="button hollow topbar-responsive-button">Dispečeri</button></a></li>
+          <li><a href="<?=APP::config('url') ?>zavarivanje/index"><button type="button" class="button hollow topbar-responsive-button">Zavarivanje</button></a></li>
+          <li><a href="<?=APP::config('url') ?>kataforeza/index"><button type="button" class="button hollow topbar-responsive-button">Kataforeza</button></a></li>
+          <li><a href="<?=APP::config('url') ?>lb1/index"><button type="button" class="button hollow topbar-responsive-button">Linija bojanja 1</button></a></li>
+          </ul>
+          </li>
+          </li>
+          </li>
         <?php endif; ?>
+        </ul>
+    </ul>
+  
+        
+ 
+    </div>
+    <div id="topbar-responsive" class="topbar-responsive-links">
+    <div class="top-bar-right">
+      <ul class="menu simple horizontal medium-horizontal">
 
         <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button">O nama</button></a></li>
         <?php if(!isset($_SESSION['autoriziran'])):?>
