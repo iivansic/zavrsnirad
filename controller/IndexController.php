@@ -30,7 +30,7 @@ class IndexController extends Controller
     {
         $np = new NadzornaplocaController();
         if(isset($_SESSION['autoriziran'])){
-            $np -> index();
+            $np -> index(); //aa
             return;
         }
 
