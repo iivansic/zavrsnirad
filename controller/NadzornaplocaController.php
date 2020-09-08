@@ -1,6 +1,6 @@
 <?php
 
-class NadzornaplocaController extends Controller
+class NadzornaplocaController extends AutorizacijaController
 {
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR;
     public function index()

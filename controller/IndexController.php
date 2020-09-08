@@ -28,9 +28,10 @@ class IndexController extends Controller
 
     public function autorizacija()
     {
-        $np = new NadzornaplocaController();
+        
         if(isset($_SESSION['autoriziran'])){
-            $np -> index(); //aa
+            $np = new NadzornaplocaController();
+            $np -> index(); 
             return;
         }
 
