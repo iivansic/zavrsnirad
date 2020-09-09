@@ -3,7 +3,7 @@
     <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
       <button class="menu-icon" type="button" data-toggle></button>
     </span>
-    <a class="topbar-responsive-logo" href="<?=APP::config('url') ?>"><strong><?=APP::config('nazivAPP') ?></strong></a>
+    <a class="topbar-responsive-logo" href="<?=APP::config('url') ?>"><strong><i class="fas fa-home"></i> <?=APP::config('nazivAPP') ?></strong></a>
   </div>
 
 
@@ -14,7 +14,7 @@
 <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li>
-        <a href="#"><button type="button" class="button hollow topbar-responsive-button">Izbornik</button></a>
+        <a href="#"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-bars"></i> Izbornik</button></a>
         <ul class="menu vertical">
 
         <li>
@@ -61,11 +61,11 @@
     <div id="topbar-responsive" class="topbar-responsive-links">
     <div class="top-bar-right">
       <ul class="menu simple horizontal medium-horizontal">
-        <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button">O nama</button></a></li>
+        <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-address-card"></i> O nama</button></a></li>
         <?php if(!isset($_SESSION['autoriziran'])):?>
           <li><a href="<?=APP::config('url') ?>index/login"><button type="button" class="button hollow topbar-responsive-button">Login</button></a></li>
         <?php else: ?>
-          <li><a href="<?=APP::config('url') ?>index/logout"><button type="button" class="button hollow topbar-responsive-button">Logout / <?= $_SESSION['autoriziran']->radnomjesto?> </button></a></li>
+          <li><a href="<?=APP::config('url') ?>index/logout"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-sign-out-alt"></i> Logout / <?= $_SESSION['autoriziran']->radnomjesto?> </button></a></li>
         <?php endif; ?>
       </ul>
     </div>
