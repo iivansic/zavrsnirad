@@ -63,7 +63,7 @@
       <ul class="menu simple horizontal medium-horizontal">
         <li><a href="<?=APP::config('url') ?>index/onama"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-address-card"></i> O nama</button></a></li>
         <?php if(!isset($_SESSION['autoriziran'])):?>
-          <li><a href="<?=APP::config('url') ?>index/login"><button type="button" class="button hollow topbar-responsive-button">Login</button></a></li>
+          <li><a href="<?=APP::config('url') ?>index/login"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-sign-in-alt"></i> Login</button></a></li>
         <?php else: ?>
           <li><a href="<?=APP::config('url') ?>index/logout"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-sign-out-alt"></i> Logout / <?= $_SESSION['autoriziran']->radnomjesto?> </button></a></li>
         <?php endif; ?>
