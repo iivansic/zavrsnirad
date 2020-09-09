@@ -1,1 +1,65 @@
 Ovdje Admin ima pravo upravljati programerima
+<br>
+
+<div class="grid-x">
+    <div class="cell large-4 medium-6 medium-offset-3 small-12 large-offset-4">
+
+        <form class="log-in-form" action="<?=APP::config('url')?>index/autorizacija" method="POST">
+        <div class="grid-x grid-padding-x">
+                <h4 class="text-center">Slaganje programa za laser</h4>
+                <label>Sirovi materijal
+                    <select>
+                        <option value="">Odaberi lim</option>
+                        <option value="060010">Lim 1,5x1500x3000 St 1203</option>
+                        <option value="060012">Lim 2x1500x3000 St 1203</option>
+                        <option value="060030">Lim 2,5x1500x3000 St 1203</option>
+                        <option value="070034">Lim 3x1500x3000 St 37-2</option>
+                        <option value="070009">Lim 4x1500x3000 St 37-2</option>
+                    </select>
+                </label>
+             <div class="medium-6 cell">
+                <label>Ime programa
+                    <input type="text" name="program" placeholder="ime programa">
+                </label>
+             </div>
+             <div class="medium-6 cell">
+                <label>Broj tabli
+                    <input type="number" name="tabla" placeholder="upiši broj">
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>Otpad
+                    <input type="number" name="otpad" placeholder="upiši postotak otpada">
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>Vrijeme rezanja
+                    <input type="number" name="vrijeme" placeholder="upiši broj minuta">
+                </label>
+            </div>
+            </div>
+                <label>Odaberi laser
+                    <select>
+                            <option value="">Odaberi laser</option>
+                            <option value="L1">Laser 1 3030</option>
+                            <option value="L2">Laser 2 fiber</option>
+                            <option value="L3">Laser 3 3040</option>
+                    </select>
+                </label>
+                <label>Kataloški broj
+                    <input type="text" name="partnumber" placeholder="upiši broj">
+                </label>
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-6 cell">
+                        <p><input type="submit" class="button expanded" value="Unos"></input></p>
+                    </div>
+                    <div class="medium-6 cell">
+                        <p><input type="submit" class="button expanded" value="Reset"></input></p>
+                </div>    
+                </div>
+         
+        
+        </form>
+
+    </div>
+</div>

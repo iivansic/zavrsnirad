@@ -1,1 +1,33 @@
 Ovdje Admin ima pravo upravljati deformacijom
+<br>
+
+<div class="grid-x">
+    <div class="cell large-4 medium-6 medium-offset-3 small-12 large-offset-4">
+
+        <form class="log-in-form" action="<?=APP::config('url')?>index/autorizacija" method="POST">
+
+                <h4 class="text-center">Unos izrezanih pozicija na laseru</h4>
+                <label>Ime radnika
+                    <input type="text" name="ime" placeholder="upiši ime">
+                <label>Kataloški broj
+                    <input type="text" name="partnumber" placeholder="odskeniraj nalog">
+                </label>
+                </label>
+                <label>Broj komada
+                    <input type="number" name="komad" placeholder="upiši broj">
+                </label>
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-6 cell">
+                        <p><input type="submit" class="button expanded" value="Unos"></input></p>
+                    </div>
+                    <div class="medium-6 cell">
+                        <p><input type="submit" class="button expanded" value="Reset"></input></p>
+                    </div>   
+                </div> 
+        
+         
+        
+        </form>
+
+    </div>
+</div>

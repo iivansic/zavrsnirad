@@ -3,3 +3,7 @@ Nadzorna ploča <br>
 ovdje ima izgleda greška ako se ide nazad pa refresh ide login a istovremeno je i logiran :D 
 <br>
 pitanje 1. dali je moguče dobit nadzorna ploča u ?php echo 'nadzornaploca';?>
+<br>
+pitanje 2. u firmi nisam postavio password na mariadb root je i prazno za lozinku. te kad pokušam u configuraciju iste te podatke dobijem ovaj error.
+<br>
+Fatal error: Uncaught PDOException: PDO::__construct(): The server requested authentication method unknown to the client [caching_sha2_password] in C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php:12 Stack trace: #0 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php(12): PDO->__construct('mysql:host=loca...', 'root', '') #1 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php(21): DB->__construct(Array) #2 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\controller\IndexController.php(60): DB::getInstanca() #3 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\App.php(31): IndexController->autorizacija() #4 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\index.php(25): App::start() #5 {main} Next PDOException: SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client in C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php:12 Stack trace: #0 C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php(12): PDO->__construct('mysql:host=loca...', 'root', '') #1 C:\Users\iivansic in C:\Users\iivansic\Desktop\EDUNOVA\zavrsnirad\model\DB.php on line 12
