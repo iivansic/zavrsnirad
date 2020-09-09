@@ -9,7 +9,6 @@
 
          <?php  // privatni dio
          if(isset($_SESSION['autoriziran'])): ?>
-         <a class="topbar-responsive-logo" href="#"><strong><?= $_SESSION['autoriziran']->radnomjesto?></strong></a>
         <?php if($_SESSION['autoriziran']->radnomjesto==='admin'): ?>
         
 <div class="top-bar-left">
@@ -51,6 +50,9 @@
     </ul>
     </div>
     <?php endif; ?>
+    <?php if($_SESSION['autoriziran']->radnomjesto!=='admin'): ?>
+    <a class="topbar-responsive-logo" href="#"><strong><?= $_SESSION['autoriziran']->radnomjesto?></strong></a>
+    <?php endif; ?>
     <?php endif; ?>     
 
     
@@ -64,7 +66,6 @@
           <li><a href="<?=APP::config('url') ?>index/login"><button type="button" class="button hollow topbar-responsive-button">Login</button></a></li>
         <?php else: ?>
           <li><a href="<?=APP::config('url') ?>index/logout"><button type="button" class="button hollow topbar-responsive-button">Logout / <?= $_SESSION['autoriziran']->radnomjesto?> </button></a></li>
-     
         <?php endif; ?>
       </ul>
     </div>
