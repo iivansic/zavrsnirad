@@ -1,1 +1,36 @@
-Ovdje Admin ima pravo upravljati radnicima
+
+<table id="example" class="display table table-bordered" style="width:100%">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Email</th>
+                <th>Lozinka</th>
+                <th>radnomjesto</th>
+                <th>komentar</th>
+                <th>datum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($radnici as $radnik): ?>
+                <tr>
+                    <td><?=$radnik->ime?></td>
+                    <td><?=$radnik->prezime?></td>
+                    <td><?=$radnik->email?></td>
+                    <td><?php if(strlen($radnik->lozinka)>20){
+                        echo substr($radnik->lozinka,0,20) . '...';
+                    }else{
+                        echo $radnik->lozinka;
+                    }?></td>
+                    <td><?=$radnik->radnomjesto?></td>
+                    <td><?php if(strlen($radnik->komentar)>20){
+                        echo substr ($radnik->komentar,0,20) . '...';
+                    }else{
+                        echo $radnik->komentar;
+                    }?></td>
+                    <td><?=$radnik->datum?></td>
+                </tr>
+
+            <?php endforeach;?>
+        </tbody>
+    </table>

@@ -100,10 +100,6 @@ class IndexController extends Controller
         return false;
     }
 
-
-
-
-
     public function test(){
         echo password_hash("a",PASSWORD_BCRYPT);
     }
