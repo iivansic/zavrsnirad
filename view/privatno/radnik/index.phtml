@@ -1,4 +1,4 @@
-
+<center><a class="button secondary" href="#"><i class="fas fa-address-card"></i><strong> Dodaj novog radnika</strong></a></center>
 <table id="example" class="display table table-bordered" style="width:100%">
         <thead class="thead-dark">
             <tr>
@@ -6,9 +6,10 @@
                 <th>Prezime</th>
                 <th>Email</th>
                 <th>Lozinka</th>
-                <th>radnomjesto</th>
-                <th>komentar</th>
-                <th>datum</th>
+                <th>Radno mjesto</th>
+                <th>Komentar</th>
+                <th>Datum</th>
+                <th>Uredi</th> 
             </tr>
         </thead>
         <tbody>
@@ -17,18 +18,12 @@
                     <td><?=$radnik->ime?></td>
                     <td><?=$radnik->prezime?></td>
                     <td><?=$radnik->email?></td>
-                    <td><?php if(strlen($radnik->lozinka)>20){
-                        echo substr($radnik->lozinka,0,20) . '...';
-                    }else{
-                        echo $radnik->lozinka;
-                    }?></td>
+                    <td><?=$radnik->lozinka?></td>
                     <td><?=$radnik->radnomjesto?></td>
-                    <td><?php if(strlen($radnik->komentar)>20){
-                        echo substr ($radnik->komentar,0,20) . '...';
-                    }else{
-                        echo $radnik->komentar;
-                    }?></td>
+                    <td><?=$radnik->komentar?></td>
                     <td><?=$radnik->datum?></td>
+                    <td><a href="#"><i class="fas fa-edit fa-2x"></i> </a>
+                    <a href="#"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
                 </tr>
 
             <?php endforeach;?>
