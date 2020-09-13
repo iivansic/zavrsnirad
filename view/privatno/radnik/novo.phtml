@@ -4,33 +4,33 @@
             <div class="grid-x grid-padding-x">
                 <div class="cell large-4">
                     <label>Ime
-                        <input type="text" name="ime">
+                        <input type="text" name="ime" value="<?=$radnik['ime']?>"/>
                     </label>
                 </div>
                 <div class="cell large-4">
                     <label>Prezime
-                        <input type="text" name="prezime">
+                        <input type="text" name="prezime" value="<?=$radnik['prezime']?>"/>
                     </label>
                 </div>
                 <div class="cell large-4">
                     <label>Radno mjesto
-                        <input type="text" name="radnomjesto">
+                        <input type="text" name="radnomjesto" value="<?=$radnik['radnomjesto']?>"/>
                     </label>
                 </div>
                 <div class="cell large-6 medium-6">
                     <label>Email
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="<?=$radnik['email']?>"/>
                     </label>
                 </div>
                 <div class="cell large-6">
                     <label>Lozinka
-                        <input type="password" name="lozinka">
+                        <input type="password" name="lozinka" value="<?=$radnik['lozinka']?>"/>
                     </label>
                 </div>
         
                 <div class="large-12 small-12 cell">
                     <label>Komentar
-                        <textarea name="komentar" cols="50" rows="10"></textarea>
+                        <textarea name="komentar" cols="50" rows="10" value="<?=$radnik['komentar']?>"> </textarea>
                     </label>
                     <?= $poruka ?>
                     <br>

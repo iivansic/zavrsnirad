@@ -25,7 +25,14 @@ class RadnikController extends AdminController
     public function novo()
     {
         if ($_SERVER['REQUEST_METHOD']==='GET'){
-            $this->novoView('Unesite tražene podatke');
+            $this->novoView('Unesite tražene podatke',[
+                'ime' => '',
+                'prezime' => '',
+                'radnomjesto' =>'',
+                'email'=>'@.hr',
+                'lozinka'=>'',
+                'komentar' => ''
+            ]);
             return;
         }
         // radi se o POST i moram kontrolirati prije unosa u bazu
@@ -37,8 +44,10 @@ class RadnikController extends AdminController
             return;
         }
         Radnik::dodajNovi($_POST);
+        // unese i prebaci me na popis radnika
         $this->index();
-       
+        //unese i ostavi te s svim podacima na trenutnoj stranici
+        //$this->novoView('radnik unesen, nastavite s unosom novih podataka',$_POST);
     }
     public function promjena()
     {
@@ -48,10 +57,11 @@ class RadnikController extends AdminController
     {
         $this->view->render($this->viewDir . 'brisanje');
     }
-    private function novoView($poruka)
+    private function novoView($poruka,$radnik)
     {
         $this->view->render($this->viewDir . 'novo',[
-            'poruka' => $poruka
+            'poruka' => $poruka,
+            'radnik' => $radnik
         ]);
     } 
 }
