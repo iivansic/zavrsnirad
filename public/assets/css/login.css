@@ -4,4 +4,8 @@
     border-radius: 0;
     background-color:orange;
   }
-  
+
+tr:hover, tr.selected {
+    background-color: #FFCF8B
+}
+td {padding: 5px;}

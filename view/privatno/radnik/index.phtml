@@ -1,6 +1,7 @@
-<center><a class="button secondary" href="#"><i class="fas fa-address-card"></i><strong> Dodaj novog radnika</strong></a></center>
+
+<center><a class="button secondary expanded" href="<?=APP::config('url')?>radnik/novo"><i class="fas fa-address-card"></i><strong> Dodaj novog radnika</strong></a></center>
 <table id="example" class="display table table-bordered" style="width:100%">
-        <thead class="thead-dark">
+        <thead style="background-color:black; color:white">
             <tr>
                 <th>Ime</th>
                 <th>Prezime</th>
@@ -22,10 +23,11 @@
                     <td><?=$radnik->radnomjesto?></td>
                     <td><?=$radnik->komentar?></td>
                     <td><?=$radnik->datum?></td>
-                    <td><a href="#"><i class="fas fa-edit fa-2x"></i> </a>
-                    <a href="#"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                    <td><a href="<?=APP::config('url')?>radnik/promjena?id<?=$radnik->id?>"><i class="fas fa-edit fa-2x"></i></a>
+                    <a href="<?=APP::config('url')?>radnik/brisanje?id<?=$radnik->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
                 </tr>
 
             <?php endforeach;?>
         </tbody>
     </table>
+
