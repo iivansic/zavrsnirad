@@ -1,10 +1,10 @@
 
-        <form action="<?=APP::config('url')?>index/novo" method="POST">
+        <form action="<?=APP::config('url')?>radnik/novo" method="POST">
             <h4 class="text-center">Dodaj novog radnika</h4>
             <div class="grid-x grid-padding-x">
                 <div class="cell large-4">
                     <label>Ime
-                        <input type="text" name="Ime">
+                        <input type="text" name="ime">
                     </label>
                 </div>
                 <div class="cell large-4">
@@ -32,10 +32,16 @@
                     <label>Komentar
                         <textarea name="komentar" cols="50" rows="10"></textarea>
                     </label>
-                </div>
-                <div class="large-12 small-12 cell">
-                    <p><input type="submit" class="button expanded secondary" value="Unos"></input></p>
                     <?= $poruka ?>
+                    <br>
+                </div>
+                <div class="large-6 small-6 cell">
+                    <p><input type="submit" class="button expanded primary" value="Unos"></input></p>
+                 </div>
+                <div class="large-6 small-6 cell">
+                    <p><a href="<?=APP::config('url')?>radnik/index" class="button expanded alert">Odustani</a></p>
+                </div>
+    
                 </div>
             </div>
         </form>
