@@ -55,7 +55,9 @@ class RadnikController extends AdminController
     }
     public function brisanje()
     {
-        $this->view->render($this->viewDir . 'brisanje');
+        //kontrola dali je id došao
+       Radnik::brisanje($_GET['id']);
+       $this->index();
     }
     private function novoView($poruka,$radnik)
     {

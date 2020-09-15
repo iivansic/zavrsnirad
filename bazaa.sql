@@ -10,17 +10,13 @@ use bazaa;
 #alter database maksimus_pp21 default character set utf8;
 create table glavnatablica(
 	id int not null primary key auto_increment,
-	mbstatus varchar(50),
 	partnumber varchar(17),
+	naziv varchar (250),
 	stanje int,
 	lokacija varchar(50),
 	status int,
-	uizradi int,
-	potrebadokraja int,
 	tehnologija varchar(10),
-	naziv varchar (250),
-	opis varchar (250),
-	kombajn varchar(50)
+	opis varchar (250)
 ) engine=innodb;
 create table radnik(
 	id int not null primary key auto_increment,
@@ -33,10 +29,11 @@ create table radnik(
     datum timestamp
 ) engine=innodb;
 insert into radnik (ime,prezime,email,radnomjesto,lozinka) values
+('admin','edunova','admin@edunova.hr','admin','$2y$10$XFN6EAhRcT8dLluR55We5e7tVIRdmpdT6UK3dKC5K5rBu61lZx8wS'),
 ('ivan','ivansic','ivan.ivansic@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
 ('zvonko','bukna','zvonko.bukna@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
-('oper','edunova','oper@edunova.hr','oper','$2y$10$ORTWwUHhw8REC1R.K54MqOg4Qa.8RcCMZOsdPN3FXjZBkCADLmKbO'),
-('admin','edunova','admin@edunova.hr','admin','$2y$10$XFN6EAhRcT8dLluR55We5e7tVIRdmpdT6UK3dKC5K5rBu61lZx8wS');
+('oper','edunova','oper@edunova.hr','oper','$2y$10$ORTWwUHhw8REC1R.K54MqOg4Qa.8RcCMZOsdPN3FXjZBkCADLmKbO');
+
 create table povijestkretanjanaloga(
 	id int not null primary key auto_increment,
 	glavnatablica int not null,
@@ -48,55 +45,27 @@ create table povijestkretanjanaloga(
 	opis text,
 	datum timestamp
 ) engine=innodb;
+
 create table status(
 	id int not null primary key auto_increment,
 	naziv varchar(50)
 ) engine=innodb;
+insert into status (naziv) values 
+('miruje'),('lansirano'),('slozeno'),('izrezano'),('savijeno'),('zavareno'),('obojano'),('zavrsno');
 
 alter table glavnatablica add foreign key (status) references status(id);
 alter table povijestkretanjanaloga add foreign key (status) references status(id);
 
 alter table povijestkretanjanaloga add foreign key (glavnatablica) references glavnatablica(id);
 alter table povijestkretanjanaloga add foreign key (radnik) references radnik(id);
-#zavarivannje bojanje dolje.... osmislit kako.
-#ubacivanje sklopova očeva s sinovima
-create table sastavnica(
-	lvl int,
-	partnumber varchar(50),
-	description varchar(50),
-	changed varchar(50),
-	quantity varchar(50),
-	um varchar(50),
-	mb varchar(50),
-	adminc varchar(50)
-);
 
-create table stanje(
-	partnumber varchar(50),
-	stanje int,
-	potreba int
-);
-create table dug(
-	partnumber varchar(50),
-	dug int,
-	razlika int
-);
-create table p1(
-	partnumber varchar(50),
-	p1 int,
-	razlika int
-);
-create table p2(
-	partnumber varchar(50),
-	p2 int,
-	razlika int
-);
-create table p3(
-	partnumber varchar(50),
-	p3 int,
-	razlika int
-);
+insert into glavnatablica (partnumber, naziv, stanje, lokacija, status, tehnologija, opis) values
+('16063115','Letva uvlačnog kanala',10,'C12',2,'LDB','Letva od Bertica');
+insert into povijestkretanjanaloga (glavnatablica,radnik,kolicina,status,lokacija,stroj,opis) values
+(1,1,10,2,'C11','Laser1','Nema škarta');
+select * from radnik;
 
-# baza podataka stanje te reduciranje stanja prilikom zavarivanja
-#popuna baze podataka
+select a.id, a.ime, a.prezime, a.email, a.radnomjesto, a.lozinka, a.komentar, a.datum, count(b.id) as povijestkretanjanaloga
+from radnik a left join povijestkretanjanaloga b on 
+a.id=b.radnik group by a.id, a.ime, a.prezime, a.email, a.radnomjesto, a.lozinka, a.komentar, a.datum;
 
