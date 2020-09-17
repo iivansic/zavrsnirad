@@ -1,1 +1,29 @@
-Ovdje Admin ima pravo upravljati zavarivanjem
+
+    <form action="<?=APP::config('url')?>zavarivanje/index" method="POST">
+        <h4 class="text-center">Prijava pozicije koja se šalje na bojanje</h4>
+        <div class="grid-x grid-padding-x">
+            <div class="cell large-4 medium-6 medium-offset-3 small-12 large-offset-4">
+                <div class="cell large-12">
+                    <label>Kataloški broj pozicije
+                        <input type="text" name="partnumber" />
+                    </label>
+                </div>
+                <div class="cell large-12 medium-12">
+                    <label>Broj komada
+                        <input type="number" name="kolicina" />
+                    </label>
+                </div>
+                <div class="large-12 small-12 cell">
+                    <label>Komentar
+                        <textarea name="komentar" cols="30" rows="5" > </textarea>
+                    </label>
+                    <?= "ovdje ce bit poruka" //$poruka ?>
+                    <br>
+                </div>
+                <div class="large-6 small-6 cell">
+                    <p><input type="submit" class="button expanded primary" value="Unos"></input></p>
+                 </div>
+            </div>
+        </form>
+        </div>
+

@@ -45,6 +45,16 @@ create table povijestkretanjanaloga(
 	opis text,
 	datum timestamp
 ) engine=innodb;
+create table kataforeza(
+	id int not null primary key auto_increment,
+	prioritet int,
+	glavnatablica int not null,
+	lokacija varchar(10),
+	stanje int,
+	stiglo int,
+	otislo int,
+	datum timestamp
+)engine=innodb;
 
 create table status(
 	id int not null primary key auto_increment,
@@ -52,7 +62,7 @@ create table status(
 ) engine=innodb;
 insert into status (naziv) values 
 ('miruje'),('lansirano'),('slozeno'),('izrezano'),('savijeno'),('zavareno'),('obojano'),('zavrsno');
-
+alter table kataforeza add foreign key (glavnatablica) references glavnatablica(id);
 alter table glavnatablica add foreign key (status) references status(id);
 alter table povijestkretanjanaloga add foreign key (status) references status(id);
 
@@ -61,6 +71,8 @@ alter table povijestkretanjanaloga add foreign key (radnik) references radnik(id
 
 insert into glavnatablica (partnumber, naziv, stanje, lokacija, status, tehnologija, opis) values
 ('16063115','Letva uvlačnog kanala',10,'C12',2,'LDB','Letva od Bertica');
+
+
 insert into povijestkretanjanaloga (glavnatablica,radnik,kolicina,status,lokacija,stroj,opis) values
 (1,1,10,2,'C11','Laser1','Nema škarta');
 select * from radnik;
