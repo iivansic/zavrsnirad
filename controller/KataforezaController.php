@@ -10,7 +10,7 @@ class KataforezaController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'kataforeza'=>Kataforeza::ucitajSve()
+            'kataforeze'=>Kataforeza::ucitajSve()
         ]);
     }
 }

@@ -16,6 +16,7 @@ create table glavnatablica(
 	lokacija varchar(50),
 	status int,
 	tehnologija varchar(10),
+	takt varchar(10),
 	opis varchar (250)
 ) engine=innodb;
 create table radnik(
@@ -48,6 +49,7 @@ create table povijestkretanjanaloga(
 create table kataforeza(
 	id int not null primary key auto_increment,
 	prioritet int,
+	minobojat int,
 	glavnatablica int not null,
 	lokacija varchar(10),
 	stanje int,
@@ -69,10 +71,21 @@ alter table povijestkretanjanaloga add foreign key (status) references status(id
 alter table povijestkretanjanaloga add foreign key (glavnatablica) references glavnatablica(id);
 alter table povijestkretanjanaloga add foreign key (radnik) references radnik(id);
 
-insert into glavnatablica (partnumber, naziv, stanje, lokacija, status, tehnologija, opis) values
-('16063115','Letva uvlačnog kanala',10,'C12',2,'LDB','Letva od Bertica');
+insert into glavnatablica (partnumber, naziv, stanje, lokacija, status, tehnologija, opis, takt) values
+('16063115','Letva uvlačnog kanala',10,'C12',2,'LDB','Letva od Bertica', 'T9'),
+('16063114','Letva uvlačnog kanala',10,'C12',2,'LDB','Letva od Bertica', 'T9'),
+('0.035.1254.3/20','Bracket',10,'C12',2,'LDB','Letva od Bertica', 'T14'),
+('06542678/10','Osovina',10,'C12',2,'LDB','Letva od Bertica', 'Kabina'),
+('06302030','Ploča',10,'C12',2,'LDB','Letva od Bertica', 'T1'),
+('0.015.2217.3','Bracket',10,'C12',2,'LDB','Letva od Bertica', 'T3');
 
-
+insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, otislo, minobojat) values
+('1','1','B12',50,50,0,18),
+('2','6','C12',25,25,0,0),
+('2','2','C12',25,25,0,0),
+('1','3','C12',25,25,0,2),
+('3','4','C12',25,25,0,0),
+('3','5','A11',25,25,0,0);
 insert into povijestkretanjanaloga (glavnatablica,radnik,kolicina,status,lokacija,stroj,opis) values
 (1,1,10,2,'C11','Laser1','Nema škarta');
 select * from radnik;

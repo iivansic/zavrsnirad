@@ -1,3 +1,46 @@
-<pre>
-    <?php print_r($kataforeza); ?>
-</pre>
+
+
+<center><a class="button secondary expanded" href="<?=APP::config('url')?>radnik/novo"><i class="fas fa-address-card"></i><strong>Knjiženje</strong></a></center>
+
+<table id="example" class="display table table-bordered" style="width:100%">
+        <thead style="background-color:black; color:white">
+            <tr>
+                <th>P</th>
+                <th>Kataloški broj</th>
+                <th>Naziv</th>
+                <th>Takt</th>
+                <th>Stanje</th>
+                <th>Min obojat</th>
+                <th>Lokacija</th>
+                <th>Ulaz</th>
+                <th>Izlaz</th>
+                <th>Uredi</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($kataforeze as $kataforeza): ?>
+                <tr>
+                    <?php if($kataforeza->prioritet==1):?> 
+                        <td style="background-color:red; text-align:center;  font-weight: bold;">P<?=$kataforeza->prioritet?></td>
+                    <?php elseif($kataforeza->prioritet==2):?> 
+                        <td style="background-color:orange; text-align:center;">P<?=$kataforeza->prioritet?></td>
+                    <?php else:?> 
+                        <td style="text-align:center;">P<?=$kataforeza->prioritet?></td>
+                    <?php endif;?> 
+                    
+                    <td><?=$kataforeza->partnumber?></td>
+                    <td><?=$kataforeza->naziv?></td>
+                    <td style="text-align:center;"><?=$kataforeza->takt?></td>
+                    <td style="text-align:center;"><?=$kataforeza->stanje?></td>
+                    <td style="text-align:center;"><?=$kataforeza->minobojat?></td>
+                    <td style="text-align:center;"><?=$kataforeza->lokacija?></td>
+                    <td style="text-align:center;"><?=$kataforeza->stiglo?></td>
+                    <td style="text-align:center;"><?=$kataforeza->otislo?></td>
+                    <td><a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$radnik->id?>"><i class="fas fa-edit fa-2x"></i></a>
+                </tr>
+
+            <?php endforeach;?>
+        </tbody>
+    </table>
+
+
