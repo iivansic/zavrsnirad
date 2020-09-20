@@ -1,6 +1,6 @@
 
 
-<center><a class="button secondary expanded" href="<?=APP::config('url')?>radnik/novo"><i class="fas fa-address-card"></i><strong>Knjiženje</strong></a></center>
+<center><a class="button secondary expanded" href="<?=APP::config('url')?>kataforeza/novo"><i class="fas fa-address-card"></i><strong>Knjiženje</strong></a></center>
 
 <table id="example" class="display table table-bordered" style="width:100%">
         <thead style="background-color:black; color:white">
@@ -36,7 +36,7 @@
                     <td style="text-align:center;"><?=$kataforeza->lokacija?></td>
                     <td style="text-align:center;"><?=$kataforeza->stiglo?></td>
                     <td style="text-align:center;"><?=$kataforeza->otislo?></td>
-                    <td><a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$radnik->id?>"><i class="fas fa-edit fa-2x"></i></a>
+                    <td><a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$kataforeza->id?>"><i class="fas fa-edit fa-2x"></i></a>
                 </tr>
 
             <?php endforeach;?>

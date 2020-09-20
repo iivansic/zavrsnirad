@@ -13,5 +13,13 @@ class Kataforeza
         $izraz ->execute();
         return $izraz->fetchALL();
     }
+    public static function dodajNovi($kataforeza){
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        insert into kataforeza (glavnatablica,stanje,prioritet,minobojat,lokacija) values (:partnumber,:stanje,
+        :prioritet,:minobojat,:lokacija);
+        ');
+        $izraz->execute($kataforeza);
+    }
 
 }

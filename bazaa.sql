@@ -1,6 +1,6 @@
 #tehnolog lansira nalog u registrator
 #programer vadi iz registratora nalog i slaze u program
-#program salje na laser operateru da reže
+#program salje na laser operateru da reĹľe
 #operater pokrece program i kad ga izreze do kraja prijavi da je pozicija/nalog izrezan te ide  na sljedecu tehnologiju
 #napomena nema potrebe skrolat nakon 166 retka samo testiranje :D
 
@@ -8,6 +8,7 @@ drop database if exists bazaa;
 create database bazaa;
 use bazaa;
 #alter database maksimus_pp21 default character set utf8;
+#alter database bazaa default character set utf8;
 create table glavnatablica(
 	id int not null primary key auto_increment,
 	partnumber varchar(17),
@@ -31,8 +32,8 @@ create table radnik(
 ) engine=innodb;
 insert into radnik (ime,prezime,email,radnomjesto,lozinka) values
 ('admin','edunova','admin@edunova.hr','admin','$2y$10$XFN6EAhRcT8dLluR55We5e7tVIRdmpdT6UK3dKC5K5rBu61lZx8wS'),
-('ivan','ivansic','ivan.ivansic@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
-('zvonko','bukna','zvonko.bukna@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('ivan','ivansic','ivan.ivansic@sdfgroup.com','inĹľenjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('zvonko','bukna','zvonko.bukna@sdfgroup.com','inĹľenjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
 ('oper','edunova','oper@edunova.hr','oper','$2y$10$ORTWwUHhw8REC1R.K54MqOg4Qa.8RcCMZOsdPN3FXjZBkCADLmKbO');
 
 create table povijestkretanjanaloga(
@@ -87,7 +88,7 @@ insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, oti
 ('3','4','C12',25,25,0,0),
 ('3','5','A11',25,25,0,0);
 insert into povijestkretanjanaloga (glavnatablica,radnik,kolicina,status,lokacija,stroj,opis) values
-(1,1,10,2,'C11','Laser1','Nema škarta');
+(1,1,10,2,'C11','Laser1','Nema Ĺˇkarta');
 select * from radnik;
 
 select a.id, a.ime, a.prezime, a.email, a.radnomjesto, a.lozinka, a.komentar, a.datum, count(b.id) as povijestkretanjanaloga
