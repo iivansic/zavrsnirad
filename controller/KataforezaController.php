@@ -43,7 +43,8 @@ class KataforezaController extends AutorizacijaController
     }
     public function brisanje()
     {
-        
+        Kataforeza::brisanje($_GET['id']);
+        $this->index();
     }
 
 }
