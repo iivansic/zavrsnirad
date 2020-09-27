@@ -13,6 +13,15 @@ class Kataforeza
         $izraz ->execute();
         return $izraz->fetchALL();
     }
+    public static function ucitaj($id)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+                select * from kataforeza where id=:id;
+            ');
+        $izraz ->execute(['id'=>$id]);
+        return $izraz->fetch();
+    }
     public static function dodajNovi($kataforeza){
         $veza = DB::getInstanca();
         $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
@@ -44,6 +53,28 @@ class Kataforeza
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('delete from kataforeza where id=:id;');
         $izraz->execute(['id'=>$id]);
+    }
+    public static function promjena($kataforeza)
+    {
+        
+        //ovaj dio ne radi prilikom promjene
+        // $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
+        // $brojizraz ->execute([
+        //     'partnumber' =>$kataforeza['partnumber']
+        // ]);
+        // $broj=$brojizraz ->fetchColumn();
+        // dovdje,
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('update kataforeza set
+        glavnatablica=:glavnatablica,
+        stanje=:stanje,
+        lokacija=:lokacija,
+        prioritet=:prioritet,
+        minobojat=:minobojat,
+        stiglo=:stiglo,
+        otislo=:otislo
+        where id=:id;');
+        $izraz->execute($kataforeza);
     }
 
 }

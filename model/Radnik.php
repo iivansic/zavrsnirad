@@ -27,7 +27,8 @@ class Radnik
     public static function dodajNovi($radnik)
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('insert into radnik (ime,prezime,radnomjesto,email,lozinka,komentar) values (:ime,:prezime,:radnomjesto,:email,:lozinka,:komentar);');
+        $izraz = $veza->prepare('insert into radnik (ime,prezime,radnomjesto,email,lozinka,komentar) values 
+        (:ime,:prezime,:radnomjesto,:email,:lozinka,:komentar);');
         $izraz->execute($radnik);
         
     }

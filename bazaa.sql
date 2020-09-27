@@ -32,9 +32,10 @@ create table radnik(
 ) engine=innodb;
 insert into radnik (ime,prezime,email,radnomjesto,lozinka) values
 ('admin','edunova','admin@edunova.hr','admin','$2y$10$XFN6EAhRcT8dLluR55We5e7tVIRdmpdT6UK3dKC5K5rBu61lZx8wS'),
-('ivan','ivansic','ivan.ivansic@sdfgroup.com','inĹľenjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
-('zvonko','bukna','zvonko.bukna@sdfgroup.com','inĹľenjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('ivan','ivansic','ivan.ivansic@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
+('zvonko','bukna','zvonko.bukna@sdfgroup.com','inženjer','$2y$10$aNOp6RRDfKdizyx5bJO1qeEqsXVmwNmbWlf6n2nBUWZbgDx9ew8JO'),
 ('oper','edunova','oper@edunova.hr','oper','$2y$10$ORTWwUHhw8REC1R.K54MqOg4Qa.8RcCMZOsdPN3FXjZBkCADLmKbO');
+
 
 create table povijestkretanjanaloga(
 	id int not null primary key auto_increment,
