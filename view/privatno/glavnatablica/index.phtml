@@ -1,1 +1,55 @@
-Ovdje Admin ima pravo upravljati glavnom tablicom
+<center><a class="button secondary expanded" href="<?=APP::config('url')?>glavnatablica/novo"><i class="fas fa-address-card"></i><strong> Dodaj novu poziciju</strong></a></center>
+
+<table class="table">
+        <thead >
+            <tr>
+                <th>ID</th>
+                <th>Kat. broj</th>
+                <th>Naziv</th>
+                <th>Stanje</th>
+                <th>Lokacija</th>
+                <th>Status</th>
+                <th>Tehnologije</th>
+                <th>Takt</th>
+                <th>Opis</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($glavnatablice as $glavnatablica): ?>
+                <tr>
+                    <td><?=$glavnatablica->id?></td>
+                    <td><?=$glavnatablica->partnumber?></td>
+                    <td><?=$glavnatablica->naziv?></td>
+                    <td><?=$glavnatablica->stanje?></td>
+                    <td><?=$glavnatablica->lokacija?></td>
+                    <?php if($glavnatablica->status==1):?> 
+                        <td style="background-color:green; text-align:center;">Miruje</td>
+                    <?php elseif($glavnatablica->status==2):?> 
+                        <td style="background-color:red; text-align:center;">Lansirano</td>
+                    <?php elseif($glavnatablica->status==3):?> 
+                        <td style="background-color:orange; text-align:center;">Slozeno</td>
+                    <?php elseif($glavnatablica->status==4):?> 
+                        <td style="background-color:purple; text-align:center;">Izrezano</td>
+                    <?php elseif($glavnatablica->status==5):?> 
+                        <td style="background-color:blue; text-align:center;">Savijeno</td>
+                    <?php elseif($glavnatablica->status==6):?> 
+                        <td style="background-color:red; text-align:center;">Zavareno</td>
+                    <?php elseif($glavnatablica->status==7):?> 
+                        <td style="background-color:green; text-align:center;">Obojano</td>
+                    <?php elseif($glavnatablica->status==8):?> 
+                        <td style="background-color:red; text-align:center;">Zavrsno</td>
+                    <?php else:?> 
+                        <td style="background-color:green; text-align:center;">Miruje</td>
+                    <?php endif;?> 
+                    <td><?=$glavnatablica->tehnologija?></td>
+                    <td><?=$glavnatablica->takt?></td>
+                    <td><?=$glavnatablica->opis?></td>
+                    <td><a href="<?=APP::config('url')?>glavnatablica/promjena?id=<?=$glavnatablica->id?>"><i class="fas fa-edit fa-2x"></i></a>
+                    <a onclick="return confirm ('Ova akcija će obrisat poziciju, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>glavnatablica/brisanje?id=<?=$glavnatablica->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                </tr>
+
+            <?php endforeach;?>
+        </tbody>
+    </table>
+
