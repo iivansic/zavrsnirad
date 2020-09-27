@@ -20,7 +20,12 @@ class Glavnatablica
         $izraz ->execute(['id'=>$id]);
         return $izraz->fetch();
     }
- 
+    public static function brisanje($id)
+    {
+        $veza=DB::getInstanca();
+        $izraz=$veza->prepare('delete from glavnatablica where id=:id;');
+        $izraz->execute(['id'=>$id]);
+    }
 
 
 
