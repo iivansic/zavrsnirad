@@ -102,21 +102,23 @@ class IndexController extends Controller
 
     public function test(){
         //echo password_hash("a",PASSWORD_BCRYPT);
-        // masivni imput u bazu
-        // $veza = DB::getInstanca();
-        // $veza->beginTransaction();
-        // for ($i=0;$i<2000;$i++){
-            // $izraz = $veza->prepare(
-               //  'insert into glavnatablica (partnumber,naziv,status,stanje) values (:partnumber,:naziv,:status,:stanje);');
-           //  $izraz->execute([
-                // 'partnumber'=> 16000000 + $i,
-                // 'naziv'=>'Generirani broj' . $i,
-                // 'status' => 1,
-                // 'stanje' => 0
-           //  ]);
-            // echo 'Gotov ' . $i . '<br/>';
-        // }
-       //  $veza->commit();
+       // masivni imput u bazu
+         $veza = DB::getInstanca();
+         $veza->beginTransaction();
+         for ($i=0;$i<2000;$i++){
+             $izraz = $veza->prepare(
+                 'insert into glavnatablica (partnumber,naziv,status,stanje,opis,lokacija) values (:partnumber,:naziv,:status,:stanje,:opis,:lokacija);');
+             $izraz->execute([
+                 'partnumber'=> 16000000 + $i,
+                 'naziv'=>'Generirani broj' . $i,
+                 'status' => 1,
+                 'stanje' => 0,
+                 'opis' => 'Testiranje samo!',
+                 'lokacija' => 'Skladište'
+             ]);
+            echo 'Gotov ' . $i . '<br/>';
+         }
+        $veza->commit();
 
 
 
