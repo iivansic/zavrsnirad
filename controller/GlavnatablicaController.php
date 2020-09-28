@@ -4,7 +4,7 @@ class GlavnatablicaController extends AutorizacijaController
 {
     private $viewDir = 'privatno'
     .DIRECTORY_SEPARATOR
-    .'Glavnatablica'
+    .'glavnatablica'
     .DIRECTORY_SEPARATOR;
 
     public function index()

@@ -27,13 +27,9 @@ class KataforezaController extends AutorizacijaController
         }
         //želim ovo da bude u funkciji kontrolaPartnumber 
         //ako part number nije dobar ne povuce vec popunjena polja isto
-        $partnumber = Kataforeza::partnumber($_POST['partnumber']);
-        if ($partnumber==0){  //echo $partnumber;
-            $this->view->render($this->viewDir . 'novo', [
-                'poruka' => 'Nije dobar kataloški broj'
-                ]);
-                 return false; 
-        }
+
+
+       
 
 
         //RADI SE O POST I MORAM KONTROLIRAT PRIJE UNOSA U BAZU
@@ -83,6 +79,7 @@ class KataforezaController extends AutorizacijaController
     }
     private function kontrolaPartnumber($kataforeza, $view)
     {
+
         if (strlen(trim($kataforeza->partnumber))===0){
             $this->$view('Obavezno unos broja Kataloškog broja',$kataforeza);
             return false;
@@ -91,6 +88,12 @@ class KataforezaController extends AutorizacijaController
             $this->$view('Kataloški broj prevelik',$kataforeza);
             return false;
         }
+        $partnumber = Kataforeza::partnumber($kataforeza->partnumber);
+        if ($partnumber==0){  //echo $partnumber;
+            $this->$view('Kataloški broj nije dobar',$kataforeza);
+                 return false; 
+        }
+
     return true;
     }
     private function kontrolaStanje($kataforeza, $view)
