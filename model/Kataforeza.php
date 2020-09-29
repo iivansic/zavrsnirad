@@ -56,17 +56,17 @@ class Kataforeza
     }
     public static function promjena($kataforeza)
     {
-        
-        //ovaj dio ne radi prilikom promjene
-        // $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
-        // $brojizraz ->execute([
-        //     'partnumber' =>$kataforeza['partnumber']
-        // ]);
-        // $broj=$brojizraz ->fetchColumn();
+
+
+        //ovaj dio ne radi prilikom promjene želim da mi ispiše na indexu od promjene $broj varijablu kako ???
+         $veza = DB::getInstanca();
+         $brojizraz = $veza->prepare('select partnumber from glavnatablica where id=:glavnatablica;');
+         $brojizraz ->execute(['glavnatablica'=>$kataforeza['id']]);
+         $broj = $brojizraz->fetchALL();
+        // $broj=$brojizraz->fetchColumn();
         // dovdje,
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('update kataforeza set
-        glavnatablica=:glavnatablica,
         stanje=:stanje,
         lokacija=:lokacija,
         prioritet=:prioritet,
@@ -76,5 +76,84 @@ class Kataforeza
         where id=:id;');
         $izraz->execute($kataforeza);
     }
+    public static function obojano()
+    {
+        // kako odradit transakciju da prilikom prijave ID rasknjizi bazu kataforeza
+        // ovo dolje je kako ja to zamišljam vjerovatno sam nikad necu natjerat da radi
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('select minobojat from kataforeza where id=:id;
+        ');
+        $izraz ->execute(['id'=>$id]);
+        $provjera=$izraz->fetch();
+        if ($provjera>0){
+            $veza = DB::getInstanca();
+            $izraz = $veza->prepare('
+            update kataforeza set 
+            stanje = stanje - :stanje,
+            minobojat = minobojat - :stanje,
+            otislo = otislo + :stanje 
+            where id=:id;');
+            $izraz ->execute([
+                'stanje'=>$kataforeza['stanje'],
+                'minobojat'=>$kataforeza['minobojat'],
+                'otislo'=>$kataforeza['otislo']
+            ]);
+          
+        }else{
+            $veza = DB::getInstanca();
+            $izraz = $veza->prepare('
+            update kataforeza set 
+            stanje = stanje - :stanje,
+            otislo = otislo + :stanje 
+            where id=:id;');
+            $izraz ->execute([
+               'stanje'=>$obojano['stanje'],
+               'otislo'=>$obojano['otislo']
+            ]);
+        }
+
+
+    }
+    public static function odprofesoraprimjer($entitet){
+        $veza = DB::getInstanca();
+        $veza->beginTransaction();
+
+        $izraz = $veza->prepare('
+        
+        select osoba from predavac where sifra=:sifra ;
+        ');
+        $izraz->execute(['sifra'=>$entitet['sifra']]);
+        $sifraOsoba = $izraz->fetchColumn();
+
+        $izraz = $veza->prepare('update osoba set
+                    ime=:ime,
+                    prezime=:prezime,
+                    oib=:oib,
+                    email=:email
+                    where sifra=:sifra');
+        $izraz->execute([
+            'ime'=>$entitet['ime'],
+            'prezime'=>$entitet['prezime'],
+            'oib'=>$entitet['oib'],
+            'email'=>$entitet['email'],
+            'sifra'=>$sifraOsoba
+        ]);
+        
+        $izraz = $veza->prepare('update predavac set
+                        iban=:iban
+                        where sifra=:sifra');
+        $izraz->execute([
+            'sifra'=>$entitet['sifra'],
+            'iban'=>$entitet['iban']
+        ]);
+        $veza->commit();
+    }
+
+
+
+
+
+
+
 
 }

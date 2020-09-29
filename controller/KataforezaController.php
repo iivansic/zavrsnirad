@@ -51,7 +51,7 @@ class KataforezaController extends AutorizacijaController
         }
   
         $kataforeza=(object)$_POST;
-        //kontrole jel dobro ukucano
+        //kontrole jel dobro ukucano ne radi mi kontrola partnumbera
         //if(!$this->kontrolaPartnumber($kataforeza,'promjenaView')){return;};
         if(!$this->kontrolaStanje($kataforeza,'promjenaView')){return;};
         if(!$this->kontrolaPrioritet($kataforeza,'promjenaView')){return;};
@@ -63,9 +63,33 @@ class KataforezaController extends AutorizacijaController
         Kataforeza::brisanje($_GET['id']);
         $this->index();
     }
+    public function obojano()
+    {
+        if ($_SERVER['REQUEST_METHOD']==='GET'){
+            $kataforeza=new stdClass();
+            $kataforeza->id='';
+            $kataforeza->stanje='';
+            $this->obojanoView('Unesite tražene podatke',$kataforeza);
+            return;
+        }
+        //kontrole jel dobro ukucano doradit ovo mora provjeravat jel ispravan id u kataforezi dal postoji...
+        $kataforeza=(object)$_POST;
+       // if(!$this->kontrolaId($kataforeza,'obojanoView')){return;};
+        if(!$this->kontrolaStanje($kataforeza,'obojanoView')){return;};
+        Kataforeza::obojano($_POST);
+        $this->index();  
+    }
+    
     private function novoView($poruka,$kataforeza)
     {
         $this->view->render($this->viewDir . 'novo',[
+            'poruka'=>$poruka,
+            'kataforeza'=>$kataforeza
+        ]);
+    }
+    private function obojanoView($poruka,$kataforeza)
+    {
+        $this->view->render($this->viewDir . 'obojano',[
             'poruka'=>$poruka,
             'kataforeza'=>$kataforeza
         ]);
@@ -76,6 +100,22 @@ class KataforezaController extends AutorizacijaController
             'poruka'=>$poruka,
             'kataforeza'=>$kataforeza
         ]);
+    }
+    private function kontrolaID($kataforeza, $view)
+    {
+        if (strlen(trim($kataforeza->partnumber))===0){
+            $this->$view('Obavezno unos broja Kataloškog broja',$kataforeza);
+            return false;
+        }
+        if (strlen(trim($kataforeza->partnumber))>20){
+            $this->$view('Kataloški broj prevelik',$kataforeza);
+            return false;
+        }
+        $id = Kataforeza::id($kataforeza->partnumber);
+        if ($partnumber==0){  //echo $partnumber;
+            $this->$view('Kataloški broj nije dobar',$kataforeza);
+                 return false; 
+        }
     }
     private function kontrolaPartnumber($kataforeza, $view)
     {
@@ -118,7 +158,11 @@ class KataforezaController extends AutorizacijaController
             $this->$view('Prioritet može biti samo od 1 do 3.', $kataforeza);
             return false;
         }
-        if(($kataforeza->prioritet)===0){
+        if(($kataforeza->prioritet)<1){
+            $this->$view('Prioritet može biti samo od 1 do 3.', $kataforeza);
+            return false;
+        }
+        if(($kataforeza->prioritet)===''){
             $this->$view('Prioritet može biti samo od 1 do 3.', $kataforeza);
             return false;
         }
