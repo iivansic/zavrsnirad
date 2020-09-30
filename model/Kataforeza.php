@@ -37,8 +37,26 @@ class Kataforeza
             'prioritet'=>$kataforeza['prioritet'],
             'minobojat'=>$kataforeza['minobojat'],
             'lokacija'=>$kataforeza['lokacija']
-        ]);        
+        ]); 
 
+        // pokušaj popune kretanje
+        /*
+        $veza = DB::getInstanca();
+        $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
+        $brojizraz ->execute([
+            'partnumber' =>$kataforeza['partnumber']
+        ]);
+        $broj=$brojizraz ->fetchColumn();
+        $izraz = $veza->prepare('insert into kretanje (glavnatablica,stanje,prioritet,minobojat,lokacija) values (:glavnatablica, :stanje, :prioritet, :minobojat, :lokacija);
+        ');
+        $izraz -> execute([
+            'glavnatablica'=> $broj,
+            'stanje'=>$kataforeza['stanje'],
+            'prioritet'=>$kataforeza['prioritet'],
+            'minobojat'=>$kataforeza['minobojat'],
+            'lokacija'=>$kataforeza['lokacija']
+        ]);           
+            */
     }
     public static function partnumber($partnumber){
         $veza = DB::getInstanca();
