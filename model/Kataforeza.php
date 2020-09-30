@@ -75,15 +75,15 @@ class Kataforeza
         where id=:id;');
         $izraz->execute($kataforeza);
     }
-    public static function obojano()
+    public static function obojano($kataforeza)
     {
         // kako odradit transakciju da prilikom prijave ID rasknjizi bazu kataforeza
         // ovo dolje je kako ja to zamišljam vjerovatno sam nikad necu natjerat da radi
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select minobojat from kataforeza where id=:id;
+        $bizraz = $veza->prepare('select minobojat from kataforeza where id=:id;
         ');
-        $izraz ->execute(['id'=>$id]);
-        $provjera=$izraz->fetch();
+        $bizraz ->execute(['id'=>$kataforeza['id']]);
+        $provjera=$bizraz->fetch();
         if ($provjera>0){
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
@@ -97,7 +97,6 @@ class Kataforeza
                 'minobojat'=>$kataforeza['minobojat'],
                 'otislo'=>$kataforeza['otislo']
             ]);
-          
         }else{
             $veza = DB::getInstanca();
             $izraz = $veza->prepare('
@@ -106,12 +105,10 @@ class Kataforeza
             otislo = otislo + :stanje 
             where id=:id;');
             $izraz ->execute([
-               'stanje'=>$obojano['stanje'],
-               'otislo'=>$obojano['otislo']
+               'stanje'=>$kataforeza['stanje'],
+               'otislo'=>$kataforeza['otislo']
             ]);
         }
-
-
     }
 
 
