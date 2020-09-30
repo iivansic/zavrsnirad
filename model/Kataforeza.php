@@ -56,17 +56,16 @@ class Kataforeza
     }
     public static function promjena($kataforeza)
     {
-
-
         //ovaj dio ne radi prilikom promjene želim da mi ispiše na indexu od promjene $broj varijablu kako ???
-         $veza = DB::getInstanca();
-         $brojizraz = $veza->prepare('select partnumber from glavnatablica where id=:glavnatablica;');
-         $brojizraz ->execute(['glavnatablica'=>$kataforeza['id']]);
-         $broj = $brojizraz->fetchALL();
+         //$veza = DB::getInstanca();
+        // $brojizraz = $veza->prepare('select partnumber from glavnatablica where id=:glavnatablica;');
+        // $brojizraz ->execute(['glavnatablica'=>$kataforeza['id']]);
+         //$broj = $brojizraz->fetchALL();
         // $broj=$brojizraz->fetchColumn();
         // dovdje,
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('update kataforeza set
+        glavnatablica=:glavnatablica,
         stanje=:stanje,
         lokacija=:lokacija,
         prioritet=:prioritet,
@@ -114,45 +113,6 @@ class Kataforeza
 
 
     }
-    public static function odprofesoraprimjer($entitet){
-        $veza = DB::getInstanca();
-        $veza->beginTransaction();
-
-        $izraz = $veza->prepare('
-        
-        select osoba from predavac where sifra=:sifra ;
-        ');
-        $izraz->execute(['sifra'=>$entitet['sifra']]);
-        $sifraOsoba = $izraz->fetchColumn();
-
-        $izraz = $veza->prepare('update osoba set
-                    ime=:ime,
-                    prezime=:prezime,
-                    oib=:oib,
-                    email=:email
-                    where sifra=:sifra');
-        $izraz->execute([
-            'ime'=>$entitet['ime'],
-            'prezime'=>$entitet['prezime'],
-            'oib'=>$entitet['oib'],
-            'email'=>$entitet['email'],
-            'sifra'=>$sifraOsoba
-        ]);
-        
-        $izraz = $veza->prepare('update predavac set
-                        iban=:iban
-                        where sifra=:sifra');
-        $izraz->execute([
-            'sifra'=>$entitet['sifra'],
-            'iban'=>$entitet['iban']
-        ]);
-        $veza->commit();
-    }
-
-
-
-
-
 
 
 
