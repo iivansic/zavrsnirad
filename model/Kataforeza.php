@@ -15,8 +15,10 @@ class Kataforeza
     }
     public static function ucitaj($id)
     {
+        // ovdje inner join ide 
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
+       
                 select * from kataforeza where id=:id;
             ');
         $izraz ->execute(['id'=>$id]);
@@ -97,13 +99,13 @@ class Kataforeza
     {
         // kako odradit transakciju da prilikom prijave ID rasknjizi bazu kataforeza
         // ovo dolje je kako ja to zamišljam vjerovatno sam nikad necu natjerat da radi
+        //ugraditi transakciju za 2 baza input
         $veza = DB::getInstanca();
-        $bizraz = $veza->prepare('select minobojat from kataforeza where id=:id;
+        $bizraz = $veza->prepare('select * from kataforeza where id=:id;
         ');
         $bizraz ->execute(['id'=>$kataforeza['id']]);
-        $provjera=$bizraz->fetch();
-        if ($provjera>0){
-            $veza = DB::getInstanca();
+        $kobj=$bizraz->fetch();
+        if ($kobj->minobojat>=$kataforeza['stanje']){
             $izraz = $veza->prepare('
             update kataforeza set 
             stanje = stanje - :stanje,
@@ -111,12 +113,10 @@ class Kataforeza
             otislo = otislo + :stanje 
             where id=:id;');
             $izraz ->execute([
-                'stanje'=>$kataforeza['stanje'],
-                'minobojat'=>$kataforeza['minobojat'],
-                'otislo'=>$kataforeza['otislo']
+                'id'=> $kataforeza['id'],
+                'stanje'=>$kataforeza['stanje']
             ]);
         }else{
-            $veza = DB::getInstanca();
             $izraz = $veza->prepare('
             update kataforeza set 
             stanje = stanje - :stanje,
@@ -124,9 +124,22 @@ class Kataforeza
             where id=:id;');
             $izraz ->execute([
                'stanje'=>$kataforeza['stanje'],
-               'otislo'=>$kataforeza['otislo']
+               'id'=>$kataforeza['id']
             ]);
         }
+     
+        $izraz = $veza->prepare('
+        insert into povijestkretanjanaloga(glavnatablica, radnik, kolicina,status,lokacija, stroj,opis,datum)
+        values (:glavnatablica, :radnik, :kolicina, :status, :lokacija, :stroj, :opis, now())');
+        $izraz ->execute([
+           'glavnatablica' =>$kobj->glavnatablica,
+           'radnik' =>1,
+           'status' =>1,
+           'kolicina'=>$kataforeza['stanje'],
+           'lokacija'=>'montaža',
+            'stroj' => 'kataforeza',
+            'opis' => 'bojanje'
+        ]);
     }
 
 
