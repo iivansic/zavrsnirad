@@ -25,7 +25,9 @@
                     <td><?=$radnik->datum?></td>
                     <td><a href="<?=APP::config('url')?>radnik/promjena?id=<?=$radnik->id?>"><i class="fas fa-edit fa-2x"></i></a>
                      <?php if($radnik->povijestkretanjanaloga==0): ?>
-                    <a onclick="return confirm ('Ova akcija će obrisat radnika, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>radnik/brisanje?id=<?=$radnik->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                    <a onclick="return confirm ('Ova akcija će obrisat radnika, da li ste sigurni da želite nastavit?');" 
+                    href="<?=APP::config('url')?>radnik/brisanje?id=<?=$radnik->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a>
+                    </td>
                      <?php endif;?>
                 </tr>
 

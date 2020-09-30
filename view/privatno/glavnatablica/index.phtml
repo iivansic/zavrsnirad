@@ -1,7 +1,6 @@
 <center><a class="button secondary expanded" href="<?=APP::config('url')?>glavnatablica/novo"><i class="fas fa-address-card"></i><strong> Dodaj novu poziciju</strong></a></center>
-
-<table class="table">
-        <thead >
+<table id="example" class="display table table-bordered" style="width:100%">
+        <thead style="background-color:black; color:white">
             <tr>
                 <th>ID</th>
                 <th>Kat. broj</th>
@@ -46,7 +45,8 @@
                     <td><?=$glavnatablica->takt?></td>
                     <td><?=$glavnatablica->opis?></td>
                     <td><a href="<?=APP::config('url')?>glavnatablica/promjena?id=<?=$glavnatablica->id?>"><i class="fas fa-edit fa-2x"></i></a>
-                    <a onclick="return confirm ('Ova akcija će obrisat poziciju, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>glavnatablica/brisanje?id=<?=$glavnatablica->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                    <a onclick="return confirm ('Ova akcija će obrisat poziciju, da li ste sigurni da želite nastavit?');" 
+                    href="<?=APP::config('url')?>glavnatablica/brisanje?id=<?=$glavnatablica->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
                 </tr>
 
             <?php endforeach;?>

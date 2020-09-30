@@ -1,6 +1,6 @@
 
-<table class="table">
-    <thead>
+<table id="example" class="display table table-bordered" style="width:100%">
+        <thead style="background-color:black; color:white">
         <tr>
             <th>Partnumber</th>
             <th>Radnik</th>
@@ -10,7 +10,7 @@
             <th>Stroj</th>
             <th>Opis</th>
             <th>Datum</th>
-            <th>Akcija</th>
+            <th>Uredi</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,8 @@
                 <td><?=$kretanje->datum?></td>
                 <td><a href="<?=APP::config('url')?>kretanje/promjena?id=<?=$kretanje->id?>"><i class="fas fa-edit fa-2x"></i></a>
                     <a onclick="return confirm ('Ova akcija će obrisat redak kretanja pozicije, da li ste sigurni da želite nastavit?');"
-                     href="<?=APP::config('url')?>kretanje/brisanje?id=<?=$kretanje->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                     href="<?=APP::config('url')?>kretanje/brisanje?id=<?=$kretanje->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

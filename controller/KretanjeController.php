@@ -30,8 +30,8 @@ class KretanjeController extends AutorizacijaController
 
     public function brisanje()
     {
-        
-        
+       Kretanje::brisanje($_GET['id']);
+       $this->index();
     }
 
 
