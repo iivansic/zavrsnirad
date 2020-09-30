@@ -16,6 +16,7 @@
                 <th>Ulaz</th>
                 <th>Izlaz</th>
                 <th>Uredi</th> 
+                <th>ID</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +29,6 @@
                     <?php else:?> 
                         <td style="text-align:center;">P<?=$kataforeza->prioritet?></td>
                     <?php endif;?> 
-                    
                     <td><?=$kataforeza->partnumber?></td>
                     <td><?=$kataforeza->naziv?></td>
                     <td style="text-align:center;"><?=$kataforeza->takt?></td>
@@ -39,8 +39,8 @@
                     <td style="text-align:center;"><?=$kataforeza->otislo?></td>
                     <td><a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$kataforeza->id?>"><i class="fas fa-edit fa-2x"></i></a>
                     <a onclick="return confirm ('Ova akcija će obrisat poziciju na bojanju, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>kataforeza/brisanje?id=<?=$kataforeza->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+                    <td style="text-align:center;"><?=$kataforeza->id?></td>    
                 </tr>
-
             <?php endforeach;?>
         </tbody>
     </table>

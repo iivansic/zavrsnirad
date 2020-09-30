@@ -31,34 +31,31 @@ class Kataforeza
             'partnumber' =>$kataforeza['partnumber']
         ]);
         $broj=$brojizraz ->fetchColumn();
-        $izraz = $veza->prepare('insert into kataforeza (glavnatablica,stanje,prioritet,minobojat,lokacija) values (:glavnatablica, :stanje, :prioritet, :minobojat, :lokacija);
+        $izraz = $veza->prepare('insert into kataforeza (glavnatablica,stanje,prioritet,minobojat,lokacija,stiglo,otislo)
+            values (:glavnatablica, :stanje, :prioritet, :minobojat, :lokacija,:stiglo,:otislo);
         ');
         $izraz -> execute([
             'glavnatablica'=> $broj,
             'stanje'=>$kataforeza['stanje'],
             'prioritet'=>$kataforeza['prioritet'],
             'minobojat'=>$kataforeza['minobojat'],
-            'lokacija'=>$kataforeza['lokacija']
+            'lokacija'=>$kataforeza['lokacija'],
+            'stiglo' => $kataforeza['stanje'],
+            'otislo' => 0
         ]); 
-
-        // pokušaj popune kretanje
-        /*
-        $veza = DB::getInstanca();
-        $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
-        $brojizraz ->execute([
-            'partnumber' =>$kataforeza['partnumber']
+            // povjest kretanja naloga
+        $izraz = $veza->prepare('
+            insert into povijestkretanjanaloga(glavnatablica, radnik, kolicina,status,lokacija, stroj,opis,datum)
+                values (:glavnatablica, :radnik, :kolicina, :status, :lokacija, :stroj, :opis, now())');
+        $izraz ->execute([
+           'glavnatablica' =>$broj,
+           'radnik' =>1,
+           'status' =>6,
+           'kolicina'=>$kataforeza['stanje'],
+           'lokacija'=>$kataforeza['lokacija'],
+            'stroj' =>'Zavarivanje',
+            'opis' =>'Poslano na bojanje'
         ]);
-        $broj=$brojizraz ->fetchColumn();
-        $izraz = $veza->prepare('insert into kretanje (glavnatablica,stanje,prioritet,minobojat,lokacija) values (:glavnatablica, :stanje, :prioritet, :minobojat, :lokacija);
-        ');
-        $izraz -> execute([
-            'glavnatablica'=> $broj,
-            'stanje'=>$kataforeza['stanje'],
-            'prioritet'=>$kataforeza['prioritet'],
-            'minobojat'=>$kataforeza['minobojat'],
-            'lokacija'=>$kataforeza['lokacija']
-        ]);           
-            */
     }
     public static function partnumber($partnumber){
         $veza = DB::getInstanca();
@@ -94,6 +91,8 @@ class Kataforeza
         otislo=:otislo
         where id=:id;');
         $izraz->execute($kataforeza);
+
+
     }
     public static function obojano($kataforeza)
     {
@@ -136,9 +135,9 @@ class Kataforeza
            'radnik' =>1,
            'status' =>1,
            'kolicina'=>$kataforeza['stanje'],
-           'lokacija'=>'montaža',
-            'stroj' => 'kataforeza',
-            'opis' => 'bojanje'
+           'lokacija'=>'Montaža',
+            'stroj' => 'Kataforeza',
+            'opis' => 'Obojano i poslano na montažu.'
         ]);
     }
 
