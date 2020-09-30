@@ -1,3 +1,33 @@
-<pre>
-    <?php print_r($kataforeza);?>
-</pre>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Partnumber</th>
+            <th>Radnik</th>
+            <th>Količina</th>
+            <th>Status</th>
+            <th>Lokacija</th>
+            <th>Stroj</th>
+            <th>Opis</th>
+            <th>Datum</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($kretanja as $kretanje): ?>
+            <tr>
+                <td><?=$kretanje->partnumber?></td>
+                <td><?=$kretanje->radnik?></td>
+                <td><?=$kretanje->kolicina?></td>
+                <td><?=$kretanje->naziv?></td>
+                <td><?=$kretanje->lokacija?></td>
+                <td><?=$kretanje->stroj?></td>
+                <td><?=$kretanje->opis?></td>
+                <td><?=$kretanje->datum?></td>
+                <td><a href="<?=APP::config('url')?>kretanje/promjena?id=<?=$kretanje->id?>"><i class="fas fa-edit fa-2x"></i></a>
+                    <a onclick="return confirm ('Ova akcija će obrisat redak kretanja pozicije, da li ste sigurni da želite nastavit?');"
+                     href="<?=APP::config('url')?>kretanje/brisanje?id=<?=$kretanje->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
