@@ -123,7 +123,6 @@ class Kataforeza
                 'id'=> $kataforeza['id'],
                 'stanje'=>$kataforeza['stanje']
             ]);
-
         }else{
             $izraz = $veza->prepare('
             update kataforeza set 
@@ -138,10 +137,15 @@ class Kataforeza
             ]);
         }
        
-        $cizraz = $veza->prepare('select * from kataforeza where id=:id;
-        ');
+        $cizraz = $veza->prepare('select * from kataforeza where id=:id;');
         $cizraz ->execute(['id'=>$kataforeza['id']]);
         $aobj=$cizraz->fetch();
+        // provjera jel minobojat 0 da makne prioritet ako ima
+        if ($aobj->minobojat <= 0){
+            $izraz = $veza->prepare('update kataforeza set prioritet = 3 where id=:id;');
+            $izraz->execute(['id'=>$kataforeza['id']]);
+        }
+        //brisanje pozicije ako je stanje nula
         if ($aobj->stanje <= 0){
             $izraz = $veza->prepare('delete from kataforeza where id=:id;');
             $izraz->execute(['id'=>$kataforeza['id']]);
