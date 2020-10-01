@@ -19,7 +19,7 @@ class Kataforeza
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
 
-            select a.id, a.prioritet, b.partnumber, b.takt, b.naziv,
+            select a.id, a.glavnatablica, a.prioritet, b.partnumber, b.takt, b.naziv,
             a.stanje, a.minobojat, a.lokacija, a.stiglo, a.otislo from kataforeza a
             inner join glavnatablica b on a.glavnatablica=b.id where a.id=:id;      
                
@@ -136,7 +136,7 @@ class Kataforeza
                'id'=>$kataforeza['id']
             ]);
         }
-        // izgleda da nije povuko novo stanje u ovom trenu i ne prepozna da je 0 ? 
+       
         $cizraz = $veza->prepare('select * from kataforeza where id=:id;
         ');
         $cizraz ->execute(['id'=>$kataforeza['id']]);

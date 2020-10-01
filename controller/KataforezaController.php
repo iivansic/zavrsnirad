@@ -25,15 +25,7 @@ class KataforezaController extends AutorizacijaController
             $this->novoView('Unesite tražene podatke',$kataforeza);
             return;
         }
-        //želim ovo da bude u funkciji kontrolaPartnumber 
-        //ako part number nije dobar ne povuce vec popunjena polja isto
 
-
-       
-
-
-        //RADI SE O POST I MORAM KONTROLIRAT PRIJE UNOSA U BAZU
-        
         //kontrole jel dobro ukucano
         $kataforeza=(object)$_POST;
         if(!$this->kontrolaPartnumber($kataforeza,'novoView')){return;};
@@ -65,12 +57,17 @@ class KataforezaController extends AutorizacijaController
     }
     public function obojano()
     {
+         
         if ($_SERVER['REQUEST_METHOD']==='GET'){
-            $kataforeza=new stdClass();
-            $kataforeza->id='';
-            $kataforeza->stanje='';
-            $this->obojanoView('Unesite tražene podatke',$kataforeza);
-            return;
+            if(!isset($_GET['id'])) {
+                $kataforeza=new stdClass();
+                $this->obojanoView('Unesite tražene podatke',$kataforeza);
+                return;
+            }else{
+                $this->obojanoView('Unesite tražene podatke',Kataforeza::ucitaj($_GET['id']));
+                return;
+                
+            }
         }
         //kontrole jel dobro ukucano doradit ovo mora provjeravat jel ispravan id u kataforezi dal postoji...
         $kataforeza=(object)$_POST;

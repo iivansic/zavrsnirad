@@ -15,8 +15,8 @@
                 <th>Lokacija</th>
                 <th>Ulaz</th>
                 <th>Izlaz</th>
+                <th>Posalji</th>
                 <th>Uredi</th> 
-                <th>ID</th>
             </tr>
         </thead>
         <tbody>
@@ -37,9 +37,10 @@
                     <td style="text-align:center;"><?=$kataforeza->lokacija?></td>
                     <td style="text-align:center;"><?=$kataforeza->stiglo?></td>
                     <td style="text-align:center;"><?=$kataforeza->otislo?></td>
-                    <td><a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$kataforeza->id?>"><i class="fas fa-edit fa-2x"></i></a>
-                    <a onclick="return confirm ('Ova akcija će obrisat poziciju na bojanju, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>kataforeza/brisanje?id=<?=$kataforeza->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
-                    <td style="text-align:center;"><?=$kataforeza->id?></td>    
+                    <td style="text-align:center;"><a href="<?=APP::config('url')?>kataforeza/obojano?id=<?=$kataforeza->id?>"><i class="fas fa-paint-roller fa-2x"></i></a></td>
+                    <td>
+                    <a href="<?=APP::config('url')?>kataforeza/promjena?id=<?=$kataforeza->id?>"><i class="fas fa-edit fa-2x"></i></a> 
+                    <a onclick="return confirm ('Ova akcija će obrisat poziciju na bojanju, da li ste sigurni da želite nastavit?');" href="<?=APP::config('url')?>kataforeza/brisanje?id=<?=$kataforeza->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td> 
                 </tr>
             <?php endforeach;?>
         </tbody>
