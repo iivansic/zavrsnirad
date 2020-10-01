@@ -16,10 +16,11 @@ insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, oti
 ('3','5','A11',25,25,0);
 
 select id from glavnatablica where partnumber ='16063115';
-select a.partnumber from kataforeza b inner join glavnatablica a on a.glavnatablica=b.id;
+                select b.id, a.id, a.stanje, a.prioritet, a.minobojat, a.lokacija, a.stiglo, a.otislo, b.partnumber 
+                from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id;
 
 select b.partnumber from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id where a.id=1;
-select b.partnumber from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id where a.id=b.id;
+select b.partnumber from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id where b.id=4;
 #ovo ispod radi al ne mogu ubacit to isto u php :S 
 update kataforeza set stanje = stanje - 5, minobojat = minobojat - 5, otislo = otislo + 5 where id=1;
 

@@ -74,7 +74,7 @@ class KataforezaController extends AutorizacijaController
         }
         //kontrole jel dobro ukucano doradit ovo mora provjeravat jel ispravan id u kataforezi dal postoji...
         $kataforeza=(object)$_POST;
-       // if(!$this->kontrolaId($kataforeza,'obojanoView')){return;};
+        if(!$this->kontrolaId($kataforeza,'obojanoView')){return;};
         if(!$this->kontrolaStanje($kataforeza,'obojanoView')){return;};
         Kataforeza::obojano($_POST);
         $this->index();  
@@ -103,19 +103,26 @@ class KataforezaController extends AutorizacijaController
     }
     private function kontrolaID($kataforeza, $view)
     {
-        if (strlen(trim($kataforeza->partnumber))===0){
-            $this->$view('Obavezno unos broja Kataloškog broja',$kataforeza);
+
+        if(($kataforeza->id)===''){
+            $this->$view('Skenirajte ponovo karticu, u slučaju ponavljanja greške pozvati nadređenog.',$kataforeza);
             return false;
         }
-        if (strlen(trim($kataforeza->partnumber))>20){
-            $this->$view('Kataloški broj prevelik',$kataforeza);
+        if (strlen(trim($kataforeza->id))===0){
+            $this->$view('Obavezno unos broja ID broja',$kataforeza);
             return false;
         }
-        $id = Kataforeza::id($kataforeza->partnumber);
-        if ($partnumber==0){  //echo $partnumber;
-            $this->$view('Kataloški broj nije dobar',$kataforeza);
-                 return false; 
+        if (strlen(trim($kataforeza->id))>10){
+            $this->$view('ID broj prevelik',$kataforeza);
+            return false;
         }
+        // greška ovdje ako id se ne nalazi u kataforeza izbaci error
+        $id = Kataforeza::id($kataforeza->id);
+        if ($id==0){  //echo $partnumber;
+            $this->$view('ID broj nije dobar ne nalazi se na spisku kataforeze.',$kataforeza);
+            return false; 
+        }
+        return true;
     }
     private function kontrolaPartnumber($kataforeza, $view)
     {
@@ -129,7 +136,7 @@ class KataforezaController extends AutorizacijaController
             return false;
         }
         $partnumber = Kataforeza::partnumber($kataforeza->partnumber);
-        if ($partnumber==0){  //echo $partnumber;
+        if ($partnumber==0){ 
             $this->$view('Kataloški broj nije dobar',$kataforeza);
                  return false; 
         }
@@ -166,9 +173,12 @@ class KataforezaController extends AutorizacijaController
             $this->$view('Prioritet može biti samo od 1 do 3.', $kataforeza);
             return false;
         }
-   
-    return true;
+        return true;
     }
+
+
+    
+    
 
 
 

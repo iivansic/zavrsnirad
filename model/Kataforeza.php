@@ -15,7 +15,7 @@ class Kataforeza
     }
     public static function ucitaj($id)
     {
-        // ovdje inner join ide ovo je prije bilo: select * from kataforeza where id=:id; 
+        // ovdje inner join ide ovo je prije bilo: select * from kataforeza where id=:id; ovdje me zafrkava ID
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
 
@@ -60,13 +60,24 @@ class Kataforeza
             'opis' =>'Poslano na bojanje'
         ]);
     }
-    public static function partnumber($partnumber){
+    public static function partnumber($partnumber)
+    {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
         $izraz -> execute([
             'partnumber'=> $partnumber
         ]);        
             return $izraz->fetchColumn();
+    }
+    public static function id($id)
+    {
+        // jel dobro ovo ?
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('select id from kataforeza where id=:id;');
+        $izraz -> execute([
+            'id'=>$id
+        ]);
+        return $izraz->fetchColumn();
     }
     public static function brisanje($id)
     {
@@ -112,9 +123,11 @@ class Kataforeza
                 'id'=> $kataforeza['id'],
                 'stanje'=>$kataforeza['stanje']
             ]);
+
         }else{
             $izraz = $veza->prepare('
             update kataforeza set 
+            minobojat = 0,
             stanje = stanje - :stanje,
             otislo = otislo + :stanje 
             where id=:id;');
@@ -123,7 +136,15 @@ class Kataforeza
                'id'=>$kataforeza['id']
             ]);
         }
-     
+        // izgleda da nije povuko novo stanje u ovom trenu i ne prepozna da je 0 ? 
+        $cizraz = $veza->prepare('select * from kataforeza where id=:id;
+        ');
+        $cizraz ->execute(['id'=>$kataforeza['id']]);
+        $aobj=$cizraz->fetch();
+        if ($aobj->stanje <= 0){
+            $izraz = $veza->prepare('delete from kataforeza where id=:id;');
+            $izraz->execute(['id'=>$kataforeza['id']]);
+        }
         $izraz = $veza->prepare('
         insert into povijestkretanjanaloga(glavnatablica, radnik, kolicina,status,lokacija, stroj,opis,datum)
         values (:glavnatablica, :radnik, :kolicina, :status, :lokacija, :stroj, :opis, now())');
@@ -136,8 +157,11 @@ class Kataforeza
             'stroj' => 'Kataforeza',
             'opis' => 'Obojano i poslano na montažu.'
         ]);
+
+
+
     }
 
-
+    
 
 }
