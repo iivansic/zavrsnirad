@@ -14,6 +14,7 @@ insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, oti
 ('1','1','B12',50,50,0),
 ('2','6','C12',25,25,0),
 ('3','5','A11',25,25,0);
+delete from povijestkretanjanaloga where id>0;
 
 select id from glavnatablica where partnumber ='16063115';
                 select b.id, a.id, a.stanje, a.prioritet, a.minobojat, a.lokacija, a.stiglo, a.otislo, b.partnumber 
