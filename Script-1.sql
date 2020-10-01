@@ -16,7 +16,7 @@ insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, oti
 ('3','5','A11',25,25,0);
 
 select id from glavnatablica where partnumber ='16063115';
-
+select a.partnumber from kataforeza b inner join glavnatablica a on a.glavnatablica=b.id;
 
 select b.partnumber from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id where a.id=1;
 select b.partnumber from kataforeza a inner join glavnatablica b on a.glavnatablica=b.id where a.id=b.id;

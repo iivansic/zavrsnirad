@@ -15,11 +15,14 @@ class Kataforeza
     }
     public static function ucitaj($id)
     {
-        // ovdje inner join ide 
+        // ovdje inner join ide ovo je prije bilo: select * from kataforeza where id=:id; 
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-       
-                select * from kataforeza where id=:id;
+
+            select a.id, a.prioritet, b.partnumber, b.takt, b.naziv,
+            a.stanje, a.minobojat, a.lokacija, a.stiglo, a.otislo from kataforeza a
+            inner join glavnatablica b on a.glavnatablica=b.id where a.id=:id;      
+               
             ');
         $izraz ->execute(['id'=>$id]);
         return $izraz->fetch();
@@ -73,13 +76,7 @@ class Kataforeza
     }
     public static function promjena($kataforeza)
     {
-        //ovaj dio ne radi prilikom promjene želim da mi ispiše na indexu od promjene $broj varijablu kako ???
-         //$veza = DB::getInstanca();
-        // $brojizraz = $veza->prepare('select partnumber from glavnatablica where id=:glavnatablica;');
-        // $brojizraz ->execute(['glavnatablica'=>$kataforeza['id']]);
-         //$broj = $brojizraz->fetchALL();
-        // $broj=$brojizraz->fetchColumn();
-        // dovdje,
+
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('update kataforeza set
         glavnatablica=:glavnatablica,
