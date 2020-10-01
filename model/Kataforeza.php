@@ -128,6 +128,7 @@ class Kataforeza
             $izraz = $veza->prepare('
             update kataforeza set 
             minobojat = 0,
+            prioritet = 3,
             stanje = stanje - :stanje,
             otislo = otislo + :stanje 
             where id=:id;');
