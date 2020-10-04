@@ -1,6 +1,10 @@
 
     <form action="<?=APP::config('url')?>kataforeza/obojano" method="POST">
-        <h4 class="text-center">Prijava pozicije koja je obojana.</h4>
+    <?php if(!empty($kataforeza->partnumber)){ ?>
+        <h4 class="text-center">Prijava pozicije koja je obojana za broj <?=$kataforeza->partnumber?></h4>
+        <?php }else{ ?> <h4 class="text-center">Prijava pozicije koja je obojana.</h4>  <?php } ?>
+       
+        
         <div class="grid-x grid-padding-x">
             <div class="cell large-4 medium-6 medium-offset-3 small-12 large-offset-4">
                 <div class="cell large-12">
@@ -23,4 +27,3 @@
             </div>
         </form>
         </div>
-
