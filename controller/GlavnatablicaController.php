@@ -1,6 +1,6 @@
 <?php
 
-class GlavnatablicaController extends AutorizacijaController
+class GlavnatablicaController extends AdminController
 {
     private $viewDir = 'privatno'
     .DIRECTORY_SEPARATOR

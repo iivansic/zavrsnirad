@@ -16,7 +16,6 @@
       <li>
         <a href="#"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-bars"></i> Izbornik</button></a>
         <ul class="menu vertical">
-
         <li>
         <a href="#"><button type="button" class="button hollow topbar-responsive-button">Baza</button></a>
         <ul class="menu vertical">
@@ -48,14 +47,18 @@
           </li>
           </li>
           </ul>
+
     </ul>
     </div>
     <?php endif; ?>
-    <?php if($_SESSION['autoriziran']->radnomjesto!=='admin'): ?>
-    <a class="topbar-responsive-logo" href="#"><strong><?= $_SESSION['autoriziran']->radnomjesto?></strong></a>
-    <?php endif; ?>
-    <?php endif; ?>     
-
+    <?php endif; ?>      
+    <ul class="menu simple horizontal medium-horizontal">
+    <?php if(isset($_SESSION['autoriziran'])): ?>
+      <?php if($_SESSION['autoriziran']->radnomjesto==='oper'): ?>    
+        <li><a href="<?=APP::config('url') ?>kataforeza/index"><button type="button" class="button hollow topbar-responsive-button">Kataforeza</button></a></li>
+      <?php endif; ?> 
+    <?php endif; ?> 
+    </ul>
     
  
    
