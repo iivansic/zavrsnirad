@@ -29,6 +29,7 @@ class Kataforeza
     }
     public static function dodajNovi($kataforeza){
         $veza = DB::getInstanca();
+        $veza->beginTransaction();
         $brojizraz = $veza->prepare('select id from glavnatablica where partnumber = :partnumber;');
         $brojizraz ->execute([
             'partnumber' =>$kataforeza['partnumber']
@@ -59,6 +60,7 @@ class Kataforeza
             'stroj' =>'Zavarivanje',
             'opis' =>'Poslano na bojanje'
         ]);
+        $veza->commit();
     }
     public static function partnumber($partnumber)
     {
@@ -108,6 +110,7 @@ class Kataforeza
         // ovo dolje je kako ja to zamišljam vjerovatno sam nikad necu natjerat da radi
         //ugraditi transakciju za 2 baza input
         $veza = DB::getInstanca();
+        $veza->beginTransaction();
         $bizraz = $veza->prepare('select * from kataforeza where id=:id;
         ');
         $bizraz ->execute(['id'=>$kataforeza['id']]);
@@ -162,7 +165,7 @@ class Kataforeza
             'stroj' => 'Kataforeza',
             'opis' => 'Obojano i poslano na montažu.'
         ]);
-
+        $veza->commit();
 
 
     }

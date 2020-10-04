@@ -89,7 +89,7 @@ insert into kataforeza (prioritet, glavnatablica , lokacija, stanje, stiglo, oti
 ('3','4','C12',25,25,0,0),
 ('3','5','A11',25,25,0,0);
 insert into povijestkretanjanaloga (glavnatablica,radnik,kolicina,status,lokacija,stroj,opis) values
-(1,1,10,2,'C11','Laser1','Nema Ĺˇkarta');
+(1,1,10,2,'C11','Laser1','Nema škarta');
 select * from radnik;
 
 select a.id, a.ime, a.prezime, a.email, a.radnomjesto, a.lozinka, a.komentar, a.datum, count(b.id) as povijestkretanjanaloga
