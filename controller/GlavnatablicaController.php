@@ -9,8 +9,54 @@ class GlavnatablicaController extends AdminController
 
     public function index()
     {
+        if(isset($_GET['uvjet'])){
+            $uvjet='%' . $_GET['uvjet'] . '%';
+            $uvjetView=$_GET['uvjet'];
+        }else{
+            $uvjet='%';
+            $uvjetView='';
+        }
+        if(isset($_GET['stranica'])){
+            $stranica=$_GET['stranica'];
+        }else{
+            $stranica=1;
+        }
+        if($stranica==1){
+            $prethodna=1;
+            $prethodnap=1;
+            $prethodnapp='';
+        }else{
+            $prethodna=$stranica - 1;
+            $prethodnap=$stranica - 1;
+            $prethodnapp=$stranica - 1;
+        }
+
+        
+        $brojPozicija=Glavnatablica::ukupnoStranica();
+        $ukupnoStranica=floor($brojPozicija/11);
+
+
+        if($stranica==$ukupnoStranica){
+            $sljedeca=$ukupnoStranica;
+            $sljedecak=$ukupnoStranica;
+            $sljedecakk='';
+        }else{
+            $sljedeca=$stranica + 1;
+            $sljedecak=$stranica + 1;
+            $sljedecakk=$stranica + 1;
+        }
+
         $this->view->render($this->viewDir . 'index',[
-            'glavnatablice'=>Glavnatablica::ucitajSve()
+            'glavnatablice'=>Glavnatablica::ucitajSve($stranica,$uvjet),
+            'trenutna' => $stranica,
+            'prethodna'=> $prethodna,
+            'sljedeca' => $sljedeca,
+            'ukupnoStranica' => $ukupnoStranica,
+            'prethodnap'=> $prethodnap,
+            'sljedecak' => $sljedecak,
+            'sljedecakk' => $sljedecakk,
+            'prethodnapp' => $prethodnapp,
+            'uvjet' => $uvjetView
         ]);
     }
 
