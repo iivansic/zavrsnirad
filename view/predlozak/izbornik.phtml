@@ -14,17 +14,18 @@
 <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li>
-        <a href="#"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-bars"></i> Izbornik</button></a>
-        <ul class="menu vertical">
+        <a href="#"><button type="button" class="button hollow topbar-responsive-button"><i class="fas fa-bars"></i> Admin menu</button></a>
+       <!-- <ul class="menu vertical">
         <li>
         <a href="#"><button type="button" class="button hollow topbar-responsive-button">Baza</button></a>
+        -->
         <ul class="menu vertical">
-          <li><br><a href="<?=APP::config('url') ?>nadzornaploca/index"><button type="button" class="button hollow topbar-responsive-button">Nadzorna ploča</button></a></li>
+      
           <li><a href="<?=APP::config('url') ?>glavnatablica/index"><button type="button" class="button hollow topbar-responsive-button">Glavna tablica</button></a></li>
           <li><a href="<?=APP::config('url') ?>radnik/index"><button type="button" class="button hollow topbar-responsive-button">Radnici</button></a></li>
-          <li><a href="<?=APP::config('url') ?>kretanje/index"><button type="button" class="button hollow topbar-responsive-button">Kretanje</button></a></li>
+          
           </ul>
-         
+         <!--
           <li>
             <a href="#"><button type="button" class="button hollow topbar-responsive-button">Početne tehnologije</button></a>
             <ul class="menu vertical">
@@ -33,21 +34,27 @@
               <li><a href="<?=APP::config('url') ?>deformacija/index"><button type="button" class="button hollow topbar-responsive-button">Deformacija</button></a></li>
               <li><a href="<?=APP::config('url') ?>strojnaobrada/index"><button type="button" class="button hollow topbar-responsive-button">Strojna Obrada</button></a></li>
           </ul>
-   
+          -->
 
           <li>
-            <a href="#"><button type="button" class="button hollow topbar-responsive-button">Završne tehnologije</button></a>
+            <a href="#"><button type="button" class="button hollow topbar-responsive-button">Proizvodnja</button></a>
             <ul class="menu vertical">
-              <li><a href="<?=APP::config('url') ?>dispecer/index"><button type="button" class="button hollow topbar-responsive-button">Dispečeri</button></a></li>
-              <li><a href="<?=APP::config('url') ?>zavarivanje/index"><button type="button" class="button hollow topbar-responsive-button">Zavarivanje</button></a></li>
+            <li><br><a href="<?=APP::config('url') ?>nadzornaploca/index"><button type="button" class="button hollow topbar-responsive-button">Nadzorna ploča</button></a></li>
               <li><a href="<?=APP::config('url') ?>kataforeza/index"><button type="button" class="button hollow topbar-responsive-button">Kataforeza</button></a></li>
-              <li><a href="<?=APP::config('url') ?>linijabojanja/index"><button type="button" class="button hollow topbar-responsive-button">Linija bojanja 1</button></a></li>
+              <li><a href="<?=APP::config('url') ?>kretanje/index"><button type="button" class="button hollow topbar-responsive-button">Kretanje</button></a></li>
+              
+              <!-- <li><a href="<?=APP::config('url') ?>dispecer/index"><button type="button" class="button hollow topbar-responsive-button">Dispečeri</button></a></li>
+              <li><a href="<?=APP::config('url') ?>zavarivanje/index"><button type="button" class="button hollow topbar-responsive-button">Zavarivanje</button></a></li>
+              
+             <li><a href="<?=APP::config('url') ?>linijabojanja/index"><button type="button" class="button hollow topbar-responsive-button">Linija bojanja 1</button></a></li>
+         -->
           </ul>
           </li>
           </li>
           </li>
+          <li><a target= "_blank" href="https://github.com/iivansic/hellopp21/blob/master/era.jpg"><button type="button" class="button hollow topbar-responsive-button">Era dijagram</button></a></li>
           </ul>
-
+         
     </ul>
     </div>
     <?php endif; ?>
@@ -56,12 +63,10 @@
     <?php if(isset($_SESSION['autoriziran'])): ?>
       <?php if($_SESSION['autoriziran']->radnomjesto==='oper'): ?>    
         <li><a href="<?=APP::config('url') ?>kataforeza/index"><button type="button" class="button hollow topbar-responsive-button">Kataforeza</button></a></li>
+        <li><a href="<?=APP::config('url') ?>kretanje/index"><button type="button" class="button hollow topbar-responsive-button">Kretanje</button></a></li>
       <?php endif; ?> 
     <?php endif; ?> 
     </ul>
-    
- 
-   
     <div id="topbar-responsive" class="topbar-responsive-links">
     <div class="top-bar-right">
       <ul class="menu simple horizontal medium-horizontal">
