@@ -1,13 +1,14 @@
 <center><a class="button succes expanded" href="<?=APP::config('url')?>glavnatablica/novo"><i class="fas fa-address-card"></i><strong> Dodaj novu poziciju</strong></a></center>
 <form action="<?=APP::config('url')?>glavnatablica/index" method="get">
-<input type="text" name="uvjet" value="<?=$uvjet?>" placeholder="Tražilica"/>
+<input autofocus type="text" name="uvjet" value="<?=$uvjet?>" placeholder="Tražilica"/>
+
 </form>
         <nav aria-label="Pagination">
             <ul class="pagination text-center"> 
                 <li class="pagination-previous"><a href="?stranica=<?=$prethodna?>" aria-label="Previous page">Prethodno</a> <span class="show-for-sr">page</span></li>
                 <li><a href="?stranica=1"><<</a></li>
                 <li><a href="?stranica=<?=$prethodnap?>"><?=$prethodnapp?></a></li>
-                <li class="current"><span class="show-for-sr">Vi ste na</span><?=$trenutna?>/<?=$ukupnoStranica?></li>
+                <li class="current"><span class="show-for-sr">Vi ste na</span><?=$trenutna?> / <?=$ukupnoStranica?></li>
                 <li><a href="?stranica=<?=$sljedecak?>"><?=$sljedecakk?></a></li>
                 <li><a href="?stranica=<?=$ukupnoStranica?>">>></a></li>
                 <li class="pagination-next"><a href="?stranica=<?=$sljedeca?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
@@ -22,6 +23,7 @@
                 <th>Naziv</th>
                 <th>Stanje</th>
                 <th>Lokacija</th>
+                <th>Status</th>
                 <th>Tehnologije</th>
                 <th>Takt</th>
                 <th>Opis</th>
@@ -36,7 +38,7 @@
                     <td><?=$glavnatablica->naziv?></td>
                     <td><?=$glavnatablica->stanje?></td>
                     <td><?=$glavnatablica->lokacija?></td>
-                    <!--
+                    
                     <?php if($glavnatablica->status==1):?> 
                         <td style="background-color:green; text-align:center;">Miruje</td>
                     <?php elseif($glavnatablica->status==2):?> 
@@ -56,7 +58,7 @@
                     <?php else:?> 
                         <td style="background-color:green; text-align:center;">Miruje</td>
                     <?php endif;?> 
-                    -->
+                
                     <td><?=$glavnatablica->tehnologija?></td>
                     <td><?=$glavnatablica->takt?></td>
                     <td><?=$glavnatablica->opis?></td>
