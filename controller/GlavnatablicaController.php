@@ -89,6 +89,17 @@ class GlavnatablicaController extends AdminController
         $this->index();
 
     }
+    public function promjena()
+    {
+        if ($_SERVER['REQUEST_METHOD']==='GET'){
+            $this->promjenaView('Promjenite željene podatke', Glavnatablica::ucitaj($_GET['id']));
+            return;
+        }
+  
+        $Glavnatablica=(object)$_POST;
+        Glavnatablica::promjena($_POST);
+        $this->index();
+    }
     private function novoView($poruka,$glavnatablica,$statusi)
     {
         $this->view->render($this->viewDir . 'novo',[
@@ -97,11 +108,13 @@ class GlavnatablicaController extends AdminController
             'statusi' => $statusi
         ]);
     } 
-    private function promjenaView($poruka,$radnik,$statusi)
+    private function promjenaView($poruka,$glavnatablica)
     {
         $this->view->render($this->viewDir . 'promjena',[
             'poruka' => $poruka,
-            'glavnatablica' => $glavnatablica
+            'glavnatablica' => $glavnatablica,
+            'statusi' => Status::ucitajSve(),
+          
         ]);
     }
     private function kontrolaPartnumber($glavnatablica,$view)
