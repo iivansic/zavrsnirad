@@ -63,10 +63,10 @@
                     <td><?=$glavnatablica->takt?></td>
                     <td><?=$glavnatablica->opis?></td>
                     <td><a href="<?=APP::config('url')?>glavnatablica/promjena?id=<?=$glavnatablica->id?>"><i class="fas fa-edit fa-2x"></i></a>
-                    <?php //if($glavnatablica->povijestkretanjanaloga==0): ?>
+                    <?php if($glavnatablica->povijestkretanjanaloga==0): ?>
                     <a onclick="return confirm ('Ova akcija će obrisat poziciju, da li ste sigurni da želite nastavit?');" 
                     href="<?=APP::config('url')?>glavnatablica/brisanje?id=<?=$glavnatablica->id?>"><i class="fas fa-trash-alt" style="color:red"></i></a></td>
-                    <?php //endif; ?>
+                    <?php endif; ?>
                 </tr>
 
             <?php endforeach;?>
