@@ -85,6 +85,12 @@ class GlavnatablicaController extends AdminController
         $glavnatablica=(object)$_POST;
 
         if(!$this->kontrolaPartnumber($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaNaziv($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaStanje($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaLokacija($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaStatus($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaTehnologija($glavnatablica,'novoView')){return;};
+        if(!$this->kontrolaTakt($glavnatablica,'novoView')){return;};
         Glavnatablica::dodajNovi($_POST);
         $this->index();
 
@@ -95,17 +101,27 @@ class GlavnatablicaController extends AdminController
             $this->promjenaView('Promjenite željene podatke', Glavnatablica::ucitaj($_GET['id']));
             return;
         }
-  
+
         $Glavnatablica=(object)$_POST;
+        /* KONTROLE NE RADE AKO UPALIM
+        if(!$this->kontrolaPartnumber($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaNaziv($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaStanje($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaLokacija($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaStatus($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaTehnologija($glavnatablica,'promjenaView')){return;};
+        if(!$this->kontrolaTakt($glavnatablica,'promjenaView')){return;};
+        */ 
         Glavnatablica::promjena($_POST);
         $this->index();
     }
-    private function novoView($poruka,$glavnatablica,$statusi)
+
+    private function novoView($poruka,$glavnatablica)
     {
         $this->view->render($this->viewDir . 'novo',[
             'poruka' => $poruka,
             'glavnatablica' => $glavnatablica,
-            'statusi' => $statusi
+            'statusi' => Status::ucitajSve()
         ]);
     } 
     private function promjenaView($poruka,$glavnatablica)
@@ -113,7 +129,7 @@ class GlavnatablicaController extends AdminController
         $this->view->render($this->viewDir . 'promjena',[
             'poruka' => $poruka,
             'glavnatablica' => $glavnatablica,
-            'statusi' => Status::ucitajSve(),
+            'statusi' => Status::ucitajSve()
           
         ]);
     }
@@ -128,6 +144,82 @@ class GlavnatablicaController extends AdminController
             return false;
         }
         // na kraju uvijek vrati true
+        return true;
+    }
+    private function kontrolaNaziv($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->naziv))==0){
+            $this->$view('Obavezan unos naziva', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->naziv))>25){
+            $this->$view('Dužina naziva prevelika', $glavnatablica);
+            return false;
+        }
+        return true;
+    }
+    private function kontrolaStanje($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->stanje))==0){
+            $this->$view('Obavezan unos stanje', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->stanje))>5){
+            $this->$view('Dužina naziva prevelika', $glavnatablica);
+            return false;
+        }
+        return true;
+    }
+    private function kontrolaLokacija($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->lokacija))==0){
+            $this->$view('Obavezan unos lokacije', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->lokacija))>10){
+            $this->$view('Dužina lokacije prevelika', $glavnatablica);
+            return false;
+        }
+        return true;
+    }
+    private function kontrolaStatus($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->status))==0){
+            $this->$view('Obavezan odabir statusa', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->status))>9){
+            $this->$view('Obavezan odabir statusa', $glavnatablica);
+            return false;
+        }
+        if(($glavnatablica->status)==0){
+            $this->$view('Obavezan odabir statusa', $glavnatablica);
+            return false;
+        }
+        return true;
+    }
+    private function kontrolaTakt($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->takt))==0){
+            $this->$view('Obavezan unos takta', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->takt))>8){
+            $this->$view('Prevelik unos takta', $glavnatablica);
+            return false;
+        }
+        return true;
+    }
+    private function kontrolaTehnologija($glavnatablica,$view)
+    {
+        if(strlen(trim($glavnatablica->tehnologija))==0){
+            $this->$view('Obavezan unos tehnologije', $glavnatablica);
+            return false;
+        }
+        if(strlen(trim($glavnatablica->tehnologija))>8){
+            $this->$view('prevelik unos tehnologije', $glavnatablica);
+            return false;
+        }
         return true;
     }
 
