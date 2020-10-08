@@ -6,10 +6,17 @@ class Glavnatablica
         $od = $stranica * 11 - 11;
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        select a.id, a.partnumber, a.naziv, a.stanje, a.lokacija, a.status, a.tehnologija, a.takt, a.opis from glavnatablica a 
+
+        select a.id, a.partnumber, a.naziv, a.stanje, a.lokacija, a.status, a.tehnologija, a.takt, a.opis,
+        count(c.id) + count(d.id) as povijestkretanjanaloga
+        from glavnatablica a 
         left join status b on a.status=b.id
+        left join povijestkretanjanaloga c on a.id=c.glavnatablica
+        left join kataforeza d on a.id=d.glavnatablica
         where concat(a.partnumber, \' \', ifnull(a.naziv, \' \'), ifnull(a.lokacija, \' \'), 
-        ifnull(b.naziv, \' \'), ifnull(a.takt, \' \'), ifnull(a.opis, \' \')) like :uvjet limit :od, 11;
+        ifnull(b.naziv, \' \'), ifnull(a.takt, \' \'), ifnull(a.opis, \' \')) like :uvjet 
+        group by a.id, a.partnumber, a.naziv, a.stanje, a.lokacija, a.status, a.tehnologija, a.takt, a.opis
+        limit :od, 11;
         ');
         //left join povijestkretanjanaloga c on a.id=c.glavnatablica  to moram nekako uglavit gore da ne vidim brisanje s ključem 
         $izraz->bindParam('uvjet',$uvjet);

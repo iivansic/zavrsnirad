@@ -102,8 +102,8 @@ class GlavnatablicaController extends AdminController
             return;
         }
 
-        $Glavnatablica=(object)$_POST;
-        /* KONTROLE NE RADE AKO UPALIM
+        $glavnatablica=(object)$_POST;
+       
         if(!$this->kontrolaPartnumber($glavnatablica,'promjenaView')){return;};
         if(!$this->kontrolaNaziv($glavnatablica,'promjenaView')){return;};
         if(!$this->kontrolaStanje($glavnatablica,'promjenaView')){return;};
@@ -111,7 +111,7 @@ class GlavnatablicaController extends AdminController
         if(!$this->kontrolaStatus($glavnatablica,'promjenaView')){return;};
         if(!$this->kontrolaTehnologija($glavnatablica,'promjenaView')){return;};
         if(!$this->kontrolaTakt($glavnatablica,'promjenaView')){return;};
-        */ 
+       
         Glavnatablica::promjena($_POST);
         $this->index();
     }
