@@ -71,9 +71,18 @@ class Kataforeza
         ]);        
             return $izraz->fetchColumn();
     }
+    // ovo ne radi 
+    public static function stanje($stanje)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('select stanje from kataforeza where id = :id;');
+        $izraz -> execute([
+            'stanje'=> $stanje
+        ]);        
+            return $izraz->fetchColumn();
+    }
     public static function id($id)
     {
-        // jel dobro ovo ?
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select id from kataforeza where id=:id;');
         $izraz -> execute([
@@ -106,9 +115,6 @@ class Kataforeza
     }
     public static function obojano($kataforeza)
     {
-        // kako odradit transakciju da prilikom prijave ID rasknjizi bazu kataforeza
-        // ovo dolje je kako ja to zamišljam vjerovatno sam nikad necu natjerat da radi
-        //ugraditi transakciju za 2 baza input
         $veza = DB::getInstanca();
         $veza->beginTransaction();
         $bizraz = $veza->prepare('select * from kataforeza where id=:id;

@@ -30,3 +30,6 @@ from povijestkretanjanaloga a
 left join glavnatablica b on a.glavnatablica=b.id
 left join radnik c on a.radnik=c.id
 left join status d on a.status=d.id;
+
+alter table glavnatablica 
+ADD COLUMN obojat int AFTER sistempotreba;

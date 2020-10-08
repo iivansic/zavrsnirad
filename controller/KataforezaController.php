@@ -150,6 +150,14 @@ class KataforezaController extends AutorizacijaController
             $this->$view('Unesite točan broj komada koje se šalju na bojanje.',$kataforeza);
             return false;
         }
+        // kako odradit da ova kontrola radi
+        /*
+        $stanje = Kataforeza::stanje($kataforeza->id);
+        if ($stanje<($kataforeza->stanje)){ 
+            $this->$view('Unos količine je veći od stanja količine pozicije na kataforezi.',$kataforeza);
+            return false;
+            }
+            */
     return true;
     }
     private function kontrolaPrioritet($kataforeza, $view)

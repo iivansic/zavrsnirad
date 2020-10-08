@@ -5,13 +5,13 @@
 </form>
         <nav aria-label="Pagination">
             <ul class="pagination text-center"> 
-                <li class="pagination-previous"><a href="?stranica=<?=$prethodna?>" aria-label="Previous page">Prethodno</a> <span class="show-for-sr">page</span></li>
+                <li class="pagination-previous"><a href="<?=APP::config('url')?>glavnatablica/index?stranica=<?=$prethodna?>" aria-label="Previous page">Prethodno</a> <span class="show-for-sr">page</span></li>
                 <li><a href="?stranica=1"><<</a></li>
                 <li><a href="?stranica=<?=$prethodnap?>"><?=$prethodnapp?></a></li>
                 <li class="current"><span class="show-for-sr">Vi ste na</span><?=$trenutna?> / <?=$ukupnoStranica?></li>
                 <li><a href="?stranica=<?=$sljedecak?>"><?=$sljedecakk?></a></li>
                 <li><a href="?stranica=<?=$ukupnoStranica?>">>></a></li>
-                <li class="pagination-next"><a href="?stranica=<?=$sljedeca?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
+                <li class="pagination-next"><a href="<?=APP::config('url')?>glavnatablica/index?stranica=<?=$sljedeca?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
             </ul>
         </nav>
 <table style="width:100%">

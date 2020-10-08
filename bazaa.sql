@@ -19,6 +19,9 @@ create table glavnatablica(
 	tehnologija varchar(10),
 	takt varchar(10),
 	opis varchar (250)
+	sistemstanje int,
+	sistempotreba int,
+	obojat int
 ) engine=innodb;
 create table radnik(
 	id int not null primary key auto_increment,
