@@ -172,10 +172,24 @@ class Kataforeza
             'opis' => 'Obojano i poslano na montažu.'
         ]);
         $veza->commit();
-
-
     }
 
-    
-
+    public static function dijagramPrioritet()
+    {
+    $veza = DB::getInstanca();
+    $izraz = $veza->prepare('select concat(\'Prioritet \', prioritet) as name, 
+    sum(minobojat) as y from kataforeza where prioritet=1;');
+    $izraz->execute();
+    return json_encode($izraz->fetchAll(),JSON_NUMERIC_CHECK);
+    }
+    public static function dijagramUkupno()
+    {
+    $veza = DB::getInstanca();
+    $izraz = $veza->prepare('
+    select sum(stanje) as ukupno from kataforeza
+    union
+    select sum(minobojat) as ukupno from kataforeza;');
+    $izraz->execute();
+    return $izraz->fetchAll();
+    }
 }

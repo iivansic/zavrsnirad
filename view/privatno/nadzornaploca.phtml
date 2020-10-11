@@ -4,6 +4,8 @@ Nadzorna ploča <br>
 <br>
 1. Kontrola stanja ne radi na kataforezi stanje manje od pokušaja knjiženja
 <br>
+2. Dijagram kako upit poslat prema bazi 
+<br>
             <div class="grid-x grid-padding-x">
                 <div class="cell large-6">
                     <figure class="highcharts-figure">
@@ -23,4 +25,47 @@ Nadzorna ploča <br>
                 </div>
             </div>
 
+<script>
+function graf2funkcija(){
+    Highcharts.chart('graf2', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Usporedba ulaza/izlaza na kataforezi'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} ({point.percentage:.1f}) %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [
+            {name: 'Ukupno', y: <?php echo $dijagramUkupno[0]->ukupno?>},
+            {name: 'Prioritet', y: <?php echo $dijagramUkupno[1]->ukupno?>}
+        ]
+    }]
+});
+}
 
+
+
+</script>
