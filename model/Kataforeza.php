@@ -72,12 +72,12 @@ class Kataforeza
             return $izraz->fetchColumn();
     }
     // ovo ne radi 
-    public static function stanje($stanje)
+    public static function stanje($id)
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select stanje from kataforeza where id = :id;');
+        $izraz = $veza->prepare('select stanje from kataforeza where id =:id;');
         $izraz -> execute([
-            'stanje'=> $stanje
+            'id'=> $id
         ]);        
             return $izraz->fetchColumn();
     }
