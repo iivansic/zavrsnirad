@@ -6,7 +6,7 @@ Highcharts.chart('graf1', {
         type: 'pie'
     },
     title: {
-        text: 'Prikaz stanja pozicija na kataforezi'
+        text: 'Prikaz P1 pozicija na kataforezi'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
