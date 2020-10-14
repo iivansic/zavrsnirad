@@ -2,7 +2,12 @@
 
 <a float:right; class="button primary " href="<?=APP::config('url')?>kataforeza/novo"><i class="fas fa-address-card"></i><strong>Ulaz pozicija na bojanje</strong></a>
 <a style = "float: right;" class="button success " href="<?=APP::config('url')?>kataforeza/obojano"><i class="fas fa-address-card"></i><strong>Izlaz pozicija s bojanja</strong></a>
-
+<div class="reveal" id="exampleModal1" data-reveal>
+<img src="<?=APP::config('url') ?>public/img/16063114.tiff" type="image/tiff">
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <table id="example" class="display table table-bordered" style="width:100%">
         <thead style="background-color:black; color:white">
             <tr>
@@ -29,7 +34,7 @@
                     <?php else:?> 
                         <td style="text-align:center;">P<?=$kataforeza->prioritet?></td>
                     <?php endif;?> 
-                    <td><?=$kataforeza->partnumber?></td>
+                    <td data-open="exampleModal1" ><?=$kataforeza->partnumber?> <i class="far fa-images"></i></td>
                     <td><?=$kataforeza->naziv?></td>
                     <td style="text-align:center;"><?=$kataforeza->takt?></td>
                     <td style="text-align:center;"><?=$kataforeza->stanje?></td>
