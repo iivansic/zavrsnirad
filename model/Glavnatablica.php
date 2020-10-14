@@ -82,8 +82,24 @@ class Glavnatablica
         takt=:takt,
         opis=:opis
         where id=:id;');
-        $izraz->execute($glavnatablica);
+        $izraz->execute([
+            'partnumber'=> $glavnatablica['partnumber'],
+            'naziv'=>$glavnatablica['naziv'],
+            'stanje'=>$glavnatablica['stanje'],
+            'lokacija'=>$glavnatablica['lokacija'],
+            'status'=>$glavnatablica['status'],
+            'tehnologija'=>$glavnatablica['tehnologija'],
+            'takt' => $glavnatablica['takt'],
+            'opis' => $glavnatablica['opis'],
+            'id' => $glavnatablica['id']
+        ]);
 
+        if(isset($_FILES['slika'])){
+            $putanja= BP . 'public'  . DIRECTORY_SEPARATOR
+            . 'img' . DIRECTORY_SEPARATOR
+            . DIRECTORY_SEPARATOR . $glavnatablica['id'] . '.tiff';
+            move_uploaded_file($_FILES['slika']['tmp_name'],$putanja);
+        }
 
     }
 
