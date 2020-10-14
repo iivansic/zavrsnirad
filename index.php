@@ -5,7 +5,7 @@ define('BP',__DIR__ . DIRECTORY_SEPARATOR);
 $t=implode(PATH_SEPARATOR, 
             [
                 BP . 'model',
-                BP . 'controller'                
+                BP . 'controller'
             ]);
 //print_r($t);
 
@@ -21,5 +21,5 @@ spl_autoload_register(function($klasa)
         }
     }
 });
-
+require 'vendor/autoload.php';
 App::start();

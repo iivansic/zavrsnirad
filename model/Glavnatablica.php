@@ -97,7 +97,7 @@ class Glavnatablica
         if(isset($_FILES['slika'])){
             $putanja= BP . 'public'  . DIRECTORY_SEPARATOR
             . 'img' . DIRECTORY_SEPARATOR
-            . DIRECTORY_SEPARATOR . $glavnatablica['id'] . '.tiff';
+            . DIRECTORY_SEPARATOR . $glavnatablica['id'] . '.jpg';
             move_uploaded_file($_FILES['slika']['tmp_name'],$putanja);
         }
 
