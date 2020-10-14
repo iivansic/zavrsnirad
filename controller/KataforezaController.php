@@ -72,7 +72,7 @@ class KataforezaController extends AutorizacijaController
         //kontrole jel dobro ukucano doradit ovo mora provjeravat jel ispravan id u kataforezi dal postoji...
         $kataforeza=(object)$_POST;
         if(!$this->kontrolaId($kataforeza,'obojanoView')){return;};
-        if(!$this->kontrolaStanje($kataforeza,'obojanoView')){return;};
+        if(!$this->kontrolaStanjeObojano($kataforeza,'obojanoView')){return;};
         Kataforeza::obojano($_POST);
         $this->index();  
     }
@@ -140,7 +140,7 @@ class KataforezaController extends AutorizacijaController
 
     return true;
     }
-    private function kontrolaStanje($kataforeza, $view)
+    private function kontrolaStanjeObojano($kataforeza, $view)
     {
         if (strlen(trim($kataforeza->stanje))===0){
             $this->$view('Obavezno unos broja komada',$kataforeza);
@@ -158,6 +158,19 @@ class KataforezaController extends AutorizacijaController
             $this->$view('Unos količine je veći od stanja količine pozicije na kataforezi.',$kataforeza);
             return false;
             }
+            
+    return true;
+    }
+    private function kontrolaStanje($kataforeza, $view)
+    {
+        if (strlen(trim($kataforeza->stanje))===0){
+            $this->$view('Obavezno unos broja komada',$kataforeza);
+            return false;
+        }
+        if (($kataforeza->stanje)>9999){
+            $this->$view('Unesite točan broj komada koje se šalju na bojanje.',$kataforeza);
+            return false;
+        }
             
     return true;
     }
