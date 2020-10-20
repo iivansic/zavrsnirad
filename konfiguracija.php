@@ -18,7 +18,7 @@ if($dev){
 
 return [
     'ip' => $_SERVER['REMOTE_ADDR'] === '127.0.0.1' ? true : false,
-    'dev' => true,
+    'dev' => false,
     'nazivAPP' => 'Edunova APP',
     'url' => 'http://polaznik04.edunova.hr/',
     'baza' => $baza
