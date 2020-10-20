@@ -21,5 +21,5 @@ spl_autoload_register(function($klasa)
         }
     }
 });
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 App::start();
